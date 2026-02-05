@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b5afoavo0v3rb"]
+
+[ext_resource type="Script" uid="uid://dypwhacebtf0y" path="res://upgrade_manager.gd" id="1_n01j4"]
+
+[node name="upgradeManager" type="Node" unique_id=282005707]
+script = ExtResource("1_n01j4")

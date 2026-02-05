@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://08qqmqt2vohv"]
+[gd_scene format=3 uid="uid://bg2hkwq7qrbu8"]
 
-[ext_resource type="PackedScene" uid="uid://xo534iykaw0s" path="res://player/node_3d.tscn" id="1_37dr8"]
-[ext_resource type="Script" uid="uid://d0qgp36xucgvd" path="res://rooms/currlevel.gd" id="1_smxkr"]
-[ext_resource type="MeshLibrary" uid="uid://db21ofkxjnyfe" path="res://meshlibrary/mainmesh.meshlib" id="2_hxh21"]
-[ext_resource type="PackedScene" uid="uid://b5afoavo0v3rb" path="res://player/upgrade_manager.tscn" id="3_4qpal"]
+[ext_resource type="Script" uid="uid://d0qgp36xucgvd" path="res://rooms/currlevel.gd" id="1_h4ld0"]
+[ext_resource type="PackedScene" uid="uid://xo534iykaw0s" path="res://player/node_3d.tscn" id="2_5powa"]
+[ext_resource type="MeshLibrary" uid="uid://db21ofkxjnyfe" path="res://meshlibrary/mainmesh.meshlib" id="3_50u06"]
+[ext_resource type="PackedScene" uid="uid://b5afoavo0v3rb" path="res://player/upgrade_manager.tscn" id="4_glsi3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_37dr8"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -19,7 +19,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="base_world" type="Node3D" unique_id=1758586049]
-script = ExtResource("1_smxkr")
+script = ExtResource("1_h4ld0")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=655791832]
 environment = SubResource("Environment_4qpal")
@@ -28,14 +28,14 @@ environment = SubResource("Environment_4qpal")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="player" parent="." unique_id=2002233893 instance=ExtResource("1_37dr8")]
+[node name="player" parent="." unique_id=2002233893 instance=ExtResource("2_5powa")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 47.77766, 6.1896553)
 
 [node name="rotatebase" type="Node3D" parent="." unique_id=1178578798]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, 0)
 
 [node name="GridMap" type="GridMap" parent="rotatebase" unique_id=1184075899]
-mesh_library = ExtResource("2_hxh21")
+mesh_library = ExtResource("3_50u06")
 cell_size = Vector3(4, 2, 4)
 cell_center_y = false
 data = {
@@ -47,4 +47,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.4818325, 0)
 use_collision = true
 size = Vector3(500, 1, 500)
 
-[node name="upgradeManager" parent="." unique_id=282005707 instance=ExtResource("3_4qpal")]
+[node name="upgradeManager" parent="." unique_id=282005707 instance=ExtResource("4_glsi3")]
