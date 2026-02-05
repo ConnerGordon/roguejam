@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://xo534iykaw0s"]
+
+[ext_resource type="Script" uid="uid://bixeksgwq3vpy" path="res://player/player.gd" id="1_7usp6"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4xowi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a202f"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7usp6"]
+radius = 0.1
+height = 1.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7usp6"]
+radius = 0.1
+height = 1.5
+
+[sub_resource type="Animation" id="Animation_7usp6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.1, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5707964, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jnk4n"]
+resource_name = "swingbase"
+length = 0.76666665
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.1, 0, 0), Vector3(0, 0, 1.1), Vector3(-1.1, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.36, 0.75),
+"transitions": PackedFloat32Array(1, 1.5691682, 1.5691684),
+"update": 0,
+"values": [Vector3(0, 0, 1.5707964), Vector3(0, -1.5707964, 1.5707964), Vector3(0, -3.1415927, 1.5707964)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4tegu"]
+_data = {
+&"RESET": SubResource("Animation_7usp6"),
+&"swingbase": SubResource("Animation_jnk4n")
+}
+
+[node name="player" type="CharacterBody3D" unique_id=2002233893]
+script = ExtResource("1_7usp6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2115782309]
+mesh = SubResource("CapsuleMesh_4xowi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1316341515]
+shape = SubResource("CapsuleShape3D_a202f")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2108912301]
+transform = Transform3D(1, 0, 0, 0, 0.65512335, 0.7555219, 0, -0.75552195, 0.65512335, 0, 10.496228, 10)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=548931003]
+transform = Transform3D(0.99999994, 0, 0, 0, -4.3711385e-08, -0.9999998, 0, 0.9999999, -4.371138e-08, 1.1, 0, 0)
+mesh = SubResource("CapsuleMesh_7usp6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2" unique_id=1914794511]
+shape = SubResource("CapsuleShape3D_7usp6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=482461232]
+root_node = NodePath("../MeshInstance3D2")
+libraries/ = SubResource("AnimationLibrary_4tegu")
