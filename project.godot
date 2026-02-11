@@ -14,6 +14,10 @@ config/name="gj3"
 run/main_scene="uid://08qqmqt2vohv"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[global_group]
+
+Player=""
+
 [input]
 
 up={

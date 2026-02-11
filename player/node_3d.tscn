@@ -123,13 +123,13 @@ height = 1.5
 radius = 0.1
 height = 1.5
 
-[node name="player" type="CharacterBody3D" unique_id=2002233893]
+[node name="player" type="CharacterBody3D" unique_id=2002233893 groups=["Player"]]
 script = ExtResource("1_7usp6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2115782309]
 mesh = SubResource("CapsuleMesh_4xowi")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1316341515]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1316341515 groups=["Player"]]
 shape = SubResource("CapsuleShape3D_a202f")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2108912301]

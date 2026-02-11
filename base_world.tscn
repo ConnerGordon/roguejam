@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://d0qgp36xucgvd" path="res://rooms/currlevel.gd" id="1_smxkr"]
 [ext_resource type="MeshLibrary" uid="uid://db21ofkxjnyfe" path="res://meshlibrary/mainmesh.meshlib" id="2_hxh21"]
 [ext_resource type="PackedScene" uid="uid://b5afoavo0v3rb" path="res://player/upgrade_manager.tscn" id="3_4qpal"]
+[ext_resource type="PackedScene" uid="uid://b28ecn6peexdw" path="res://gameobjects/door.tscn" id="4_qdgwk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_37dr8"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -31,7 +32,7 @@ environment = SubResource("Environment_4qpal")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="player" parent="." unique_id=2002233893 instance=ExtResource("1_37dr8")]
+[node name="player" parent="." unique_id=2002233893 groups=["Player"] instance=ExtResource("1_37dr8")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 47.77766, 6.1896553)
 
 [node name="rotatebase" type="Node3D" parent="." unique_id=1178578798]
@@ -60,10 +61,21 @@ size = Vector3(48.314682, 1, 32.238922)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="rotatebase/mapping" unique_id=1827389239]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.097584, 12.42503, -12.569645)
+use_collision = true
 size = Vector3(48.939583, 14.467285, 0.9303868)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="rotatebase/mapping" unique_id=1874691312]
 transform = Transform3D(-8.940697e-08, 0, 1, 0, 1, 0, -1, 0, -8.940697e-08, 28.664574, 12.023569, 4.1058655)
+use_collision = true
 size = Vector3(33.317024, 14.467285, 0.9303868)
 
+[node name="props" type="Node3D" parent="rotatebase" unique_id=2008239237]
+
+[node name="Node3D" parent="rotatebase/props" unique_id=483435681 instance=ExtResource("4_qdgwk")]
+transform = Transform3D(-5.9604645e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -5.9604645e-08, 26.951948, 5.1656284, 2.824215)
+
 [node name="upgradeManager" parent="." unique_id=282005707 instance=ExtResource("3_4qpal")]
+
+[connection signal="getout" from="player" to="." method="_on_player_getout"]
+[connection signal="area_entered" from="rotatebase/props/Node3D" to="." method="_on_node_3d_area_entered"]
+[connection signal="area_exited" from="rotatebase/props/Node3D" to="." method="_on_node_3d_area_exited"]
