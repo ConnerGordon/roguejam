@@ -1,11 +1,14 @@
 extends Area3D
 
+signal leave(bool)
 
 func _on_area_entered(area: Area3D) -> void:
-	if area.is_in_group("Player"):
-		if Input.is_action_just_pressed("interact"):
-			
+	
+	if area.get_parent_node_3d().is_in_group("Player"):
+		print("great")
+		leave.emit(true)
 
 
 func _on_area_exited(area: Area3D) -> void:
-	pass # Replace with function body.
+	if area.is_in_group("Player"):
+		leave.emit(false)

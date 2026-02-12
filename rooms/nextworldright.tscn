@@ -35,7 +35,7 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="player" parent="." unique_id=2002233893 instance=ExtResource("2_r137e")]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 47.77766, 6.1896553)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -63.791096, 7.725299, 17.325335)
 
 [node name="rotatebase" type="Node3D" parent="." unique_id=1178578798]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, 0)
@@ -121,5 +121,8 @@ size = Vector3(71.9063, 11.251526, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1560593, 12.27468, -50.192947)
 use_collision = true
 size = Vector3(1, 11.1605835, 3.7098389)
+
+[node name="props" type="Node3D" parent="rotatebase" unique_id=478014470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.417608, 7.0462093, 67.30051)
 
 [node name="upgradeManager" parent="." unique_id=282005707 instance=ExtResource("4_y5ql7")]

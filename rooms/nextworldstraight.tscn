@@ -65,4 +65,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.563614, 20.346329, 3.85610
 use_collision = true
 size = Vector3(1, 26.429138, 32.02896)
 
+[node name="props" type="Node3D" parent="rotatebase" unique_id=17220906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.609375, 7.4632187, 3.6664963)
+
 [node name="upgradeManager" parent="." unique_id=282005707 instance=ExtResource("4_yr8r3")]
+
+[node name="camerapos" type="Node3D" parent="." unique_id=1812845446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.758938, 58.54759, 65.72955)
