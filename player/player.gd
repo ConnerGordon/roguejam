@@ -15,13 +15,15 @@ var sword = true
 var gun = false
 
 
-func _process(delta: float) -> void:
-	if camerabase != null:
-		camera_3d.global_position = camerabase
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	
+	
+	
+	if camerabase != null:
+		camera_3d.global_position = camerabase
 	camera_3d.look_at(global_position)
 	
 	
@@ -57,6 +59,3 @@ func _physics_process(delta: float) -> void:
 			
 	move_and_slide()
 	
-
-func passin(vec:Vector3):
-	camerabase = vec

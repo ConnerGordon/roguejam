@@ -27,6 +27,12 @@ albedo_color = Color(0.67513067, 0, 0.001037314, 1)
 [node name="base_world" type="Node3D" unique_id=1758586049]
 script = ExtResource("1_xpu7g")
 
+[node name="camerapos" type="Node3D" parent="." unique_id=451608260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.048187, 26.244556, 38.742188)
+
+[node name="camerapos2" type="Node3D" parent="." unique_id=117308110]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.475026, 19.502893, 1.7698269)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=655791832]
 environment = SubResource("Environment_4qpal")
 

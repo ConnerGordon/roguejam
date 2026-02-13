@@ -21,15 +21,11 @@ glow_enabled = true
 [node name="base_world" type="Node3D" unique_id=1758586049]
 script = ExtResource("1_85lwy")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=655791832]
-environment = SubResource("Environment_4qpal")
+[node name="camerapos" type="Node3D" parent="." unique_id=1812845446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.803497, 34.467945, 55.60772)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1107977062]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
-
-[node name="player" parent="." unique_id=2002233893 instance=ExtResource("2_bt500")]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 47.77766, 6.1896553)
+[node name="camerapos2" type="Node3D" parent="." unique_id=2086890835]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.825037, 34.467945, 10.765055)
 
 [node name="rotatebase" type="Node3D" parent="." unique_id=1178578798]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, 0)
@@ -68,7 +64,14 @@ size = Vector3(1, 26.429138, 32.02896)
 [node name="props" type="Node3D" parent="rotatebase" unique_id=17220906]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.609375, 7.4632187, 3.6664963)
 
-[node name="upgradeManager" parent="." unique_id=282005707 instance=ExtResource("4_yr8r3")]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=655791832]
+environment = SubResource("Environment_4qpal")
 
-[node name="camerapos" type="Node3D" parent="." unique_id=1812845446]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.758938, 58.54759, 65.72955)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1107977062]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="player" parent="." unique_id=2002233893 instance=ExtResource("2_bt500")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 47.77766, 6.1896553)
+
+[node name="upgradeManager" parent="." unique_id=282005707 instance=ExtResource("4_yr8r3")]

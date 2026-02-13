@@ -7,6 +7,7 @@ var next
 @onready var rotatebase: Node3D = $rotatebase
 @onready var props: Node3D = $rotatebase/props
 @onready var camerapos: Node3D = $camerapos
+@onready var camerapos_2: Node3D = $camerapos2
 
 
 @export var door : PackedScene = preload("res://gameobjects/door.tscn")
@@ -41,6 +42,14 @@ func change(g:bool)->void:
 	leavable = g
 
 
+func _physics_process(delta: float) -> void:
+	if camerapos != null:
+		print(camerapos.global_position.distance_to(player.global_position))
+		if camerapos.global_position.distance_to(player.global_position) > 70:
+			
+			player.camerabase = camerapos_2.position
+		elif camerapos.global_position.distance_to(player.global_position) < 70:
+			player.camerabase = camerapos.position
 
 func _process(delta: float) -> void:
 	

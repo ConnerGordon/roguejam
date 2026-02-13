@@ -24,6 +24,12 @@ albedo_color = Color(0.22352941, 1, 1, 1)
 [node name="base_world" type="Node3D" unique_id=1758586049]
 script = ExtResource("1_smxkr")
 
+[node name="camerapos" type="Node3D" parent="." unique_id=2079931810]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.851269, 40.810974, 28.163788)
+
+[node name="camerapos2" type="Node3D" parent="." unique_id=952781047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.851269, 40.810974, 28.163788)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=655791832]
 environment = SubResource("Environment_4qpal")
 
@@ -72,6 +78,3 @@ size = Vector3(33.317024, 14.467285, 0.9303868)
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 26.641163, 5.326296, 5.3565607)
 
 [node name="upgradeManager" parent="." unique_id=282005707 instance=ExtResource("3_4qpal")]
-
-[node name="camerapos" type="Node3D" parent="." unique_id=2079931810]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.851269, 40.810974, 28.163788)
