@@ -11,6 +11,7 @@ var next
 
 
 @export var door : PackedScene = preload("res://gameobjects/door.tscn")
+@onready var grid_map: GridMap = $rotatebase/GridMap
 
 var leavable := false
 
@@ -18,6 +19,9 @@ var leavable := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
+	grid_map.callspawn()
+	
+	grid_map.visible = false
 	player.camerabase = camerapos.global_position
 	
 	var gen = door.instantiate()
@@ -44,7 +48,7 @@ func change(g:bool)->void:
 
 func _physics_process(delta: float) -> void:
 	if camerapos != null:
-		print(camerapos.global_position.distance_to(player.global_position))
+		##print(camerapos.global_position.distance_to(player.global_position))
 		if camerapos.global_position.distance_to(player.global_position) > 70:
 			
 			player.camerabase = camerapos_2.position
