@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://xo534iykaw0s" path="res://player/node_3d.tscn" id="2_1ud1c"]
 [ext_resource type="MeshLibrary" uid="uid://db21ofkxjnyfe" path="res://meshlibrary/mainmesh.meshlib" id="3_dwpy8"]
 [ext_resource type="PackedScene" uid="uid://b5afoavo0v3rb" path="res://player/upgrade_manager.tscn" id="4_0bahr"]
+[ext_resource type="Script" uid="uid://yxvtijrgn2l2" path="res://grid_map.gd" id="4_1ud1c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_37dr8"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -20,6 +21,12 @@ glow_enabled = true
 
 [node name="base_world" type="Node3D" unique_id=1758586049]
 script = ExtResource("1_2rmps")
+
+[node name="camerapos" type="Node3D" parent="." unique_id=1811370367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.49963, 18.111944, 25.09213)
+
+[node name="camerapos2" type="Node3D" parent="." unique_id=1277629487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.68445, 24.768415, -27.308327)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=655791832]
 environment = SubResource("Environment_4qpal")
@@ -42,10 +49,64 @@ bake_navigation = true
 data = {
 "cells": PackedInt32Array(1, 65530, 0, 0, 65530, 0, 2, 65533, 0, 1, 65533, 0, 1, 65534, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 1, 2, 0, 65535, 2, 0, 65534, 2, 0, 65534, 1, 0, 65534, 0, 0, 65535, 0, 0, 1, 0, 0, 2, 0, 0, 3, 1, 0, 3, 2, 0, 3, 3, 0, 2, 3, 0, 1, 3, 0, 0, 3, 0, 65533, 2, 0, 65532, 2, 0, 65531, 1, 0, 65531, 0, 0, 65531, 65535, 0, 65532, 65535, 0, 65533, 65535, 0, 65534, 65535, 0, 65535, 65535, 0, 1, 65535, 0, 2, 65535, 0, 3, 65535, 0, 4, 65535, 0, 5, 0, 0, 6, 1, 0, 6, 2, 0, 5, 2, 0, 4, 2, 0, 2, 2, 0, 65535, 1, 0, 1, 1, 0, 2, 1, 0, 4, 1, 0, 5, 1, 0, 4, 0, 0, 3, 0, 0, 65533, 0, 0, 65532, 0, 0, 65532, 1, 0, 65533, 1, 0, 65535, 3, 0, 65534, 3, 0, 65533, 3, 0, 65532, 3, 0, 65531, 3, 0, 65530, 3, 0, 65530, 2, 0, 65529, 2, 0, 65528, 2, 0, 65527, 2, 0, 65526, 2, 0, 65526, 1, 0, 65525, 1, 0, 65527, 1, 0, 65528, 1, 0, 65528, 3, 0, 65527, 3, 0, 65527, 4, 0, 65526, 4, 0, 65525, 4, 0, 65525, 3, 0, 65524, 3, 0, 65524, 2, 0, 65525, 2, 0, 65526, 3, 0, 65529, 3, 0, 65530, 1, 0, 65530, 0, 0, 65529, 1, 0, 65529, 0, 0, 65528, 0, 0, 65527, 0, 0, 65526, 0, 0, 65525, 0, 0, 65524, 1, 0, 65524, 0, 0, 65526, 65535, 0, 65527, 65535, 0, 65528, 65535, 0, 65529, 65535, 0, 65530, 65535, 0, 2, 65534, 0, 3, 65534, 0, 4, 65534, 0, 5, 65534, 0, 5, 65535, 0, 6, 0, 0, 6, 65535, 0, 6, 65534, 0, 6, 65533, 0, 6, 65532, 0, 5, 65532, 0, 5, 65533, 0, 4, 65533, 0, 3, 65533, 0, 65535, 65534, 0, 65534, 65534, 0, 65531, 65534, 0, 65530, 65534, 0, 65529, 65534, 0, 65528, 65534, 0, 65532, 65534, 0, 65533, 65534, 0, 65530, 65533, 0, 65531, 65533, 0, 4, 65532, 0, 3, 65532, 0, 2, 65532, 0, 1, 65532, 0, 0, 65531, 0, 65535, 65531, 0, 65532, 65533, 0, 65533, 65533, 0, 65534, 65533, 0, 65535, 65532, 0, 0, 65532, 0, 65534, 65532, 0, 0, 65533, 0, 65535, 65533, 0, 65531, 2, 0, 65524, 4, 0, 65528, 4, 0, 65529, 4, 0, 65530, 4, 0, 65531, 4, 0, 65532, 4, 0, 65533, 4, 0, 65534, 4, 0, 65535, 4, 0, 0, 4, 0, 1, 4, 0, 2, 4, 0, 3, 4, 0, 4, 4, 0, 5, 4, 0, 6, 4, 0, 6, 3, 0, 5, 3, 0, 4, 3, 0, 6, 65531, 0, 6, 65530, 0, 6, 65529, 0, 5, 65529, 0, 4, 65529, 0, 3, 65529, 0, 2, 65529, 0, 1, 65529, 0, 0, 65529, 0, 3, 65530, 0, 4, 65530, 0, 5, 65530, 0, 5, 65531, 0, 4, 65531, 0, 3, 65531, 0, 2, 65531, 0, 1, 65531, 0, 2, 65530, 0, 0, 65528, 0, 1, 65528, 0, 2, 65528, 0, 3, 65528, 0, 4, 65528, 0, 5, 65528, 0, 6, 65528, 0, 65523, 2, 0, 65523, 3, 0, 65523, 4, 0, 65522, 4, 0, 65522, 3, 0, 65522, 2, 0, 65522, 1, 0, 65523, 1, 0, 65523, 0, 0, 65522, 0, 0, 65521, 2, 0, 65521, 3, 0, 65521, 4, 0, 65521, 1, 0, 65521, 0, 0, 1, 65527, 0, 2, 65527, 0, 3, 65527, 0, 5, 65527, 0, 6, 65527, 0, 4, 65527, 0, 4, 65526, 0, 3, 65526, 0, 2, 65526, 0, 5, 65526, 0, 6, 65526, 0, 6, 65525, 0, 5, 65525, 0, 5, 65524, 0, 4, 65525, 0, 3, 65525, 0, 3, 65524, 0, 4, 65524, 0, 4, 65523, 0, 5, 65523, 0, 6, 65524, 0, 6, 65523, 0, 6, 65522, 0, 5, 65522, 0, 4, 65522, 0, 4, 65521, 0, 5, 65521, 0, 6, 65521, 0, 4, 65520, 0, 5, 65520, 0, 6, 65520, 0)
 }
+script = ExtResource("4_1ud1c")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="rotatebase" unique_id=11778641]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.4818325, 0)
 use_collision = true
 size = Vector3(500, 1, 500)
+
+[node name="mapping" type="Node3D" parent="rotatebase" unique_id=210523164]
+
+[node name="floors" type="Node3D" parent="rotatebase/mapping" unique_id=846606160]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="rotatebase/mapping/floors" unique_id=796446708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.079977, 9.536743e-07, 10.008965)
+size = Vector3(88.19202, 1, 20)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="rotatebase/mapping/floors" unique_id=1347449008]
+transform = Transform3D(-1.1920929e-07, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -1.1920929e-07, 22.035837, 1.9073486e-06, -23.5329)
+size = Vector3(80.81271, 1, 12.08905)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="rotatebase/mapping/floors" unique_id=767305846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.980407, 0, -15.807129)
+size = Vector3(16.960815, 1, 32.614258)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="rotatebase/mapping/floors" unique_id=1615300273]
+transform = Transform3D(-8.940697e-08, 0, 1, 0, 1, 0, -1, 0, -8.940697e-08, -15.868778, 0, -3.6664195)
+size = Vector3(8.401794, 1, 32.177734)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="rotatebase/mapping/floors" unique_id=1375102549]
+transform = Transform3D(-8.940697e-08, 0, 1, 0, 1, 0, -1, 0, -8.940697e-08, -12.241156, 0, -9.858217)
+size = Vector3(4.4029236, 1, 23.879883)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="rotatebase/mapping/floors" unique_id=376999644]
+transform = Transform3D(-8.940697e-08, 0, 1, 0, 1, 0, -1, 0, -8.940697e-08, -4.0732546, 0, -14.068774)
+size = Vector3(4.4029236, 1, 7.8502197)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="rotatebase/mapping/floors" unique_id=1059702282]
+transform = Transform3D(-8.940697e-08, 0, 1, 0, 1, 0, -1, 0, -8.940697e-08, -2.2151785, 0, -18.348076)
+size = Vector3(4.4029236, 1, 3.7150269)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="rotatebase/mapping/floors" unique_id=738753019]
+transform = Transform3D(-8.940697e-08, 0, 1, 0, 1, 0, -1, 0, -8.940697e-08, 10.09285, 0, -34.111942)
+size = Vector3(4.4029236, 1, 12.3194275)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="rotatebase/mapping/floors" unique_id=517381542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.788396, -9.536743e-07, -42.36717)
+size = Vector3(4.4029236, 1, 12.3194275)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="rotatebase/mapping/floors" unique_id=776547626]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.798172, 0, -2.013586)
+size = Vector3(8.496872, 1, 4.1439323)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="rotatebase/mapping/floors" unique_id=1509051476]
+transform = Transform3D(-8.940697e-08, 0, 1, 0, 1, 0, -1, 0, -8.940697e-08, 9.806203, 0, -37.85677)
+size = Vector3(4.4029236, 1, 3.7150269)
+
+[node name="walling" type="Node3D" parent="rotatebase/mapping" unique_id=1338402232]
+
+[node name="props" type="Node3D" parent="rotatebase" unique_id=1640141963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.833065, 0.16305113, -45.739323)
 
 [node name="upgradeManager" parent="." unique_id=282005707 instance=ExtResource("4_0bahr")]

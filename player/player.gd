@@ -22,9 +22,9 @@ func _physics_process(delta: float) -> void:
 	
 	
 	
-	if camerabase != null:
-		camera_3d.global_position = camerabase
-	camera_3d.look_at(global_position)
+	#if camerabase != null:
+		#camera_3d.global_position = camerabase
+	#camera_3d.look_at(global_position)
 	
 	
 	
