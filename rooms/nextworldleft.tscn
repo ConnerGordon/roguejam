@@ -57,6 +57,7 @@ use_collision = true
 size = Vector3(500, 1, 500)
 
 [node name="mapping" type="Node3D" parent="rotatebase" unique_id=210523164]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 
 [node name="floors" type="Node3D" parent="rotatebase/mapping" unique_id=846606160]
 
@@ -105,6 +106,14 @@ transform = Transform3D(-8.940697e-08, 0, 1, 0, 1, 0, -1, 0, -8.940697e-08, 9.80
 size = Vector3(4.4029236, 1, 3.7150269)
 
 [node name="walling" type="Node3D" parent="rotatebase/mapping" unique_id=1338402232]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="rotatebase/mapping/walling" unique_id=1768189960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.961744, 9.414078, 20.548014)
+size = Vector3(87.851425, 19.828156, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="rotatebase/mapping/walling" unique_id=1958853371]
+transform = Transform3D(-8.940697e-08, 0, 1, 0, 1, 0, -1, 0, -8.940697e-08, 28.087997, 9.414078, -22.439186)
+size = Vector3(87.851425, 19.828156, 1)
 
 [node name="props" type="Node3D" parent="rotatebase" unique_id=1640141963]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.833065, 0.16305113, -45.739323)

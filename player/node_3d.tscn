@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://xo534iykaw0s"]
 
 [ext_resource type="Script" uid="uid://bixeksgwq3vpy" path="res://player/player.gd" id="1_7usp6"]
+[ext_resource type="PackedScene" uid="uid://tc7cafrg3x7e" path="res://ui/canvas_layer.tscn" id="2_4tegu"]
+[ext_resource type="Script" uid="uid://cf5k3x2g7xnnk" path="res://ui/canvas_layer.gd" id="3_fs8bw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4xowi"]
 
@@ -148,3 +150,8 @@ mesh = SubResource("CapsuleMesh_7usp6")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1914794511]
 transform = Transform3D(-4.3711385e-08, -0.9999999, 0, 0.9999999, -4.3711385e-08, 0, 0, 0, 0.99999976, 1.1, 0, 0)
 shape = SubResource("CapsuleShape3D_7usp6")
+
+[node name="UI" parent="." unique_id=1132305213 instance=ExtResource("2_4tegu")]
+script = ExtResource("3_fs8bw")
+
+[editable path="UI"]

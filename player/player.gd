@@ -1,8 +1,9 @@
 extends CharacterBody3D
 class_name Player
 
-
+@onready var ui: CanvasLayer = $UI
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var label: Label = $UI/VBoxContainer/Label
 
 @onready var camera_3d: Camera3D = $Camera3D
 
@@ -13,6 +14,16 @@ const JUMP_VELOCITY = 4.5
 
 var sword = true
 var gun = false
+
+signal byebye
+
+var var_health : int :
+	set(new_health):
+		var_health = new_health
+		label.text = "Health: " + str(var_health)
+		if var_health <1:
+			byebye.emit()
+			Engine.time_scale = 0.0
 
 
 
@@ -59,3 +70,31 @@ func _physics_process(delta: float) -> void:
 			
 	move_and_slide()
 	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+##
+##
+##
+##
+##
+##
+##							UI SECTION
+##
+##
+##
+##
+##
+##
+##
+##
+##
