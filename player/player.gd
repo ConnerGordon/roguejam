@@ -6,6 +6,9 @@ class_name Player
 @onready var label: Label = $UI/VBoxContainer/Label
 
 @onready var camera_3d: Camera3D = $Camera3D
+@onready var timer_1: Timer = $Timer1
+@onready var timer_2: Timer = $Timer2
+@onready var swingabl: Timer = $swingabl
 
 var camerabase
 
@@ -61,8 +64,21 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
 	if sword:
-		if Input.is_action_just_pressed("attack"):
-			animation_player.play("swingbase")
+		if Input.is_action_just_pressed("attack") && swingabl.is_stopped():
+			if timer_2.is_stopped() == false:
+				animation_player.play("chopodoom")
+				timer_2.stop()
+			
+			elif timer_1.is_stopped() == false:
+				animation_player.play("swingbase2")
+				timer_2.start()
+				timer_1.stop()
+			
+			else:
+				timer_1.start()
+				animation_player.play("swingbase")
+			swingabl.start()
+		
 			
 	
 	

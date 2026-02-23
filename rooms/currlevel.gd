@@ -21,7 +21,6 @@ func _ready() -> void:
 	
 	grid_map.callspawn()
 	
-	grid_map.visible = false
 	player.camerabase = camerapos.global_position
 	
 	var gen = door.instantiate()

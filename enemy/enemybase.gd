@@ -1,11 +1,34 @@
 extends Area3D
 
+@export var movement_speed: float = 4.0
+var physics_delta: float
+@onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
+
 
 
 func _ready() -> void:
-	pass 
+	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
+	
+func set_movement_target(movement_target: Vector3):
+	print(movement_target)
+	navigation_agent.set_target_position(movement_target)
 
+func _physics_process(delta):
+	# Save the delta for use in _on_velocity_computed.
+	physics_delta = delta
+	# Do not query when the map has never synchronized and is empty.
+	if NavigationServer3D.map_get_iteration_id(navigation_agent.get_navigation_map()) == 0:
+		return
+	if navigation_agent.is_navigation_finished():
+		return
 
+	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
+	print(navigation_agent.get_next_path_position())
+	var new_velocity: Vector3 = global_position.direction_to(next_path_position) * movement_speed
+	if navigation_agent.avoidance_enabled:
+		navigation_agent.set_velocity(new_velocity)
+	else:
+		_on_velocity_computed(new_velocity)
 
-func _process(delta: float) -> void:
-	pass
+func _on_velocity_computed(safe_velocity: Vector3) -> void:
+	global_position = global_position.move_toward(global_position + safe_velocity, physics_delta * movement_speed)
