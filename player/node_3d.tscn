@@ -4,8 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://tc7cafrg3x7e" path="res://ui/canvas_layer.tscn" id="2_4tegu"]
 [ext_resource type="Script" uid="uid://cf5k3x2g7xnnk" path="res://ui/canvas_layer.gd" id="3_fs8bw"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_4xowi"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a202f"]
 
 [sub_resource type="Animation" id="Animation_7usp6"]
@@ -223,6 +221,8 @@ _data = {
 &"swingbase2": SubResource("Animation_4tegu")
 }
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4xowi"]
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7usp6"]
 radius = 0.1
 height = 1.5
@@ -234,26 +234,28 @@ height = 1.5
 [node name="player" type="CharacterBody3D" unique_id=2002233893 groups=["Player"]]
 script = ExtResource("1_7usp6")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2115782309]
-mesh = SubResource("CapsuleMesh_4xowi")
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2108912301]
+transform = Transform3D(1, 0, 0, 0, 0.65512335, 0.7555219, 0, -0.75552195, 0.65512335, 0, 10.496228, 10)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1316341515 groups=["Player"]]
 shape = SubResource("CapsuleShape3D_a202f")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=2108912301]
-transform = Transform3D(1, 0, 0, 0, 0.65512335, 0.7555219, 0, -0.75552195, 0.65512335, 0, 10.496228, 10)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=482461232]
-root_node = NodePath("../Area3D/MeshInstance3D2")
+root_node = NodePath("../rotpiv/Area3D/MeshInstance3D2")
 libraries/ = SubResource("AnimationLibrary_4tegu")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=500320551]
+[node name="rotpiv" type="Node3D" parent="." unique_id=1756052829]
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Area3D" unique_id=548931003]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rotpiv" unique_id=2115782309]
+mesh = SubResource("CapsuleMesh_4xowi")
+
+[node name="Area3D" type="Area3D" parent="rotpiv" unique_id=500320551]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="rotpiv/Area3D" unique_id=548931003]
 transform = Transform3D(-4.3711385e-08, -0.9999999, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 0.9999998, 1.1, 0, 0)
 mesh = SubResource("CapsuleMesh_7usp6")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1914794511]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rotpiv/Area3D" unique_id=1914794511]
 transform = Transform3D(-4.3711385e-08, -0.9999999, 0, 0.9999999, -4.3711385e-08, 0, 0, 0, 0.99999976, 1.1, 0, 0)
 shape = SubResource("CapsuleShape3D_7usp6")
 
@@ -271,5 +273,11 @@ one_shot = true
 [node name="swingabl" type="Timer" parent="." unique_id=1765698555]
 wait_time = 0.75
 one_shot = true
+
+[node name="dashing" type="Timer" parent="." unique_id=542408780]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="timeout" from="dashing" to="." method="_on_dashing_timeout"]
 
 [editable path="UI"]

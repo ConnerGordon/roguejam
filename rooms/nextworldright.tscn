@@ -26,6 +26,10 @@ albedo_color = Color(0.05882353, 0.40784314, 1, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpu7g"]
 albedo_color = Color(0.67513067, 0, 0.001037314, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5n48o"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
 [node name="base_world" type="Node3D" unique_id=1758586049]
 script = ExtResource("1_xpu7g")
 
@@ -134,7 +138,67 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1560593, 12.27468, -50.192
 use_collision = true
 size = Vector3(1, 11.1605835, 3.7098389)
 
+[node name="CSGBox3D7" type="CSGBox3D" parent="rotatebase/mapping/walling" unique_id=577861451]
+transform = Transform3D(-0.003612876, 0, 0.9999938, 0, 1, 0, -0.9999938, 0, -0.003612876, 3.7529306, 12.182157, 21.828262)
+use_collision = true
+size = Vector3(53.46301, 14.467285, 0.9303868)
+material = SubResource("StandardMaterial3D_5n48o")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="rotatebase/mapping/walling" unique_id=1108200632]
+transform = Transform3D(0.99997854, 0, -0.00659737, 0, 1, 0, 0.00659737, 0, 0.99997854, -12.445925, 12.1821575, -3.4231472)
+use_collision = true
+size = Vector3(32.307358, 14.467285, 0.9303868)
+material = SubResource("StandardMaterial3D_5n48o")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="rotatebase/mapping/walling" unique_id=1764128991]
+transform = Transform3D(0.0146253705, 0, -0.9998935, 0, 1, 0, 0.9998935, 0, 0.0146253705, -26.273647, 12.1821575, -8.07003)
+use_collision = true
+size = Vector3(9.056511, 14.467285, 0.9303868)
+material = SubResource("StandardMaterial3D_5n48o")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="rotatebase/mapping/walling" unique_id=615542867]
+transform = Transform3D(-1.0000002, 0, 0.00054106116, 0, 1, 0, -0.00054106116, 0, -1.0000002, -43.03546, 12.1821575, -11.639487)
+use_collision = true
+size = Vector3(33.376034, 14.467285, 0.9303868)
+material = SubResource("StandardMaterial3D_5n48o")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="rotatebase/mapping/walling" unique_id=1929158442]
+transform = Transform3D(0.00038409233, 0, 1.0000007, 0, 1, 0, -1.0000007, 0, 0.00038409233, -60.55366, 12.1821575, -29.832539)
+use_collision = true
+size = Vector3(37.072296, 14.467285, 0.9303868)
+material = SubResource("StandardMaterial3D_5n48o")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="rotatebase/mapping/walling" unique_id=18929852]
+transform = Transform3D(0.99986196, 0, -0.016667336, 0, 1, 0, 0.016667336, 0, 0.99986196, 6.4366417, 12.1821575, 48.4981)
+use_collision = true
+size = Vector3(5.0849075, 14.467285, 0.9303868)
+material = SubResource("StandardMaterial3D_5n48o")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="rotatebase/mapping/walling" unique_id=555164253]
+transform = Transform3D(0.99986196, 0, -0.016667336, 0, 1, 0, 0.016667336, 0, 0.99986196, 10.1816845, 12.1821575, 55.66465)
+use_collision = true
+size = Vector3(3.5981178, 14.467285, 0.9303868)
+material = SubResource("StandardMaterial3D_5n48o")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="rotatebase/mapping/walling" unique_id=1537397320]
+transform = Transform3D(-0.012758255, 0, -0.99991953, 0, 1, 0, 0.99991953, 0, -0.012758255, 7.921957, 12.1821575, 51.554108)
+use_collision = true
+size = Vector3(6.900384, 14.467285, 0.9303868)
+material = SubResource("StandardMaterial3D_5n48o")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="rotatebase/mapping/walling" unique_id=2013341312]
+transform = Transform3D(-0.012758255, 0, -0.99991953, 0, 1, 0, 0.99991953, 0, -0.012758255, 11.377096, 12.1821575, 61.539352)
+use_collision = true
+size = Vector3(12.193844, 14.467285, 0.9303868)
+material = SubResource("StandardMaterial3D_5n48o")
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="rotatebase/mapping/walling" unique_id=178135823]
+transform = Transform3D(-0.99991935, 0, 0.012775719, 0, 1, 0, -0.012775719, 0, -0.99991935, 19.540964, 12.1821575, 68.242226)
+use_collision = true
+size = Vector3(16.296448, 14.467285, 0.9303868)
+material = SubResource("StandardMaterial3D_5n48o")
+
 [node name="props" type="Node3D" parent="rotatebase" unique_id=478014470]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.417608, 7.0462093, 67.30051)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.71016, -1.4283829, 67.13287)
 
 [node name="upgradeManager" parent="." unique_id=282005707 instance=ExtResource("4_y5ql7")]

@@ -12,3 +12,6 @@ size = Vector3(4, 0.1, 4)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1833812005]
 mesh = SubResource("BoxMesh_1klcr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=943122786]
+mesh = SubResource("BoxMesh_1klcr")
