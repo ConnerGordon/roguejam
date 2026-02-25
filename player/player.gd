@@ -59,8 +59,8 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	if Input.is_anything_pressed() == false:
-		velocity= velocity.clampf(-7.5,7.5)
+	##if Input.is_anything_pressed() == false:
+		##velocity= velocity.clampf(-7.5,7.5)
 	
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	
@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.move_toward(movedir * SPEED, accel*delta )
 	if Input.is_action_just_pressed("dash") && dashing.is_stopped():
 		
-		velocity = velocity.move_toward(last * SPEED * 4, accel)
+		velocity = velocity.move_toward(last * SPEED * 2, accel)
 		dashing.start()
 	
 	

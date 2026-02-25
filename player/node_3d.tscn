@@ -244,7 +244,7 @@ shape = SubResource("CapsuleShape3D_a202f")
 root_node = NodePath("../rotpiv/Area3D/MeshInstance3D2")
 libraries/ = SubResource("AnimationLibrary_4tegu")
 
-[node name="rotpiv" type="Node3D" parent="." unique_id=1756052829]
+[node name="rotpiv" type="Node3D" parent="." unique_id=1756052829 groups=["Player"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="rotpiv" unique_id=2115782309]
 mesh = SubResource("CapsuleMesh_4xowi")

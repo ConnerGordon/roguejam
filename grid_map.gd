@@ -16,6 +16,7 @@ func callspawn() -> void:
 			while inv == false:
 				var mappout = local_to_map(Vector3(randf_range(-80,80),0,randf_range(-75,75)))
 				if get_cell_item(mappout) == 0:
+					print("sp")
 					en.position =  map_to_local(mappout)
 					set_cell_item(mappout,1)
 					Encount -= 1
