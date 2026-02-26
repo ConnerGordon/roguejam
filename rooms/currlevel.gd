@@ -11,17 +11,17 @@ var next
 
 
 @export var door : PackedScene = preload("res://gameobjects/door.tscn")
-@onready var grid_map: GridMap = $rotatebase/GridMap
+
+@onready var grid_map: GridMap = $rotatebase/NavigationRegion3D/GridMap
 
 var leavable := false
 
+var read := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
-	grid_map.callspawn()
 	
-	player.camerabase = camerapos.global_position
 	
 	var gen = door.instantiate()
 	gen.rotation = rotatebase.rotation + props.rotation
@@ -38,7 +38,8 @@ func _ready() -> void:
 		next = "res://rooms/nextworldstraight.tscn"
 	if int(choose) == 2:
 		next = "res://rooms/nextworldright.tscn"
-	
+		
+	player.camerabase = camerapos.global_position
 
 
 func change(g:bool)->void:
@@ -46,6 +47,10 @@ func change(g:bool)->void:
 
 
 func _physics_process(delta: float) -> void:
+	if grid_map != null && read:
+		grid_map.callspawn()
+		read = false
+		
 	if camerapos != null:
 		##print(camerapos.global_position.distance_to(player.global_position))
 		if camerapos.global_position.distance_to(player.global_position) > 70:

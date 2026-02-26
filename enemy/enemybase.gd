@@ -1,34 +1,94 @@
-extends Area3D
-
-@export var movement_speed: float = 4.0
-var physics_delta: float
-@onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
+extends CharacterBody3D
 
 
+const SPEED = 5.0
 
-func _ready() -> void:
-	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
+@onready var detec: Area3D = $detec
+
+enum State{ IDLE, WAITMOVE,MOVE, PLAYERTARG, PLAYERREACH}
+var state : State = State.IDLE
+
+var idle_wait: float = 1.5 # default wait time
+var idle_timer: float = 0 # internal countdown timer
+var found := false
+
+@onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
+
+var playpos
+
+
+func _physics_process(delta: float) -> void:
+	playpos = get_tree().get_first_node_in_group("Player").global_position
 	
-func set_movement_target(movement_target: Vector3):
-	print(movement_target)
-	navigation_agent.set_target_position(movement_target)
+	
+	match state:
+		State.IDLE:
+			on_idle()
+		State.WAITMOVE:
+			on_wait(delta)
+		State.MOVE:
+			on_move()
+		State.PLAYERTARG:
+			on_targ()
+		State.PLAYERREACH:
+			p_reach()
+	move_and_slide()
+	
 
-func _physics_process(delta):
-	# Save the delta for use in _on_velocity_computed.
-	physics_delta = delta
-	# Do not query when the map has never synchronized and is empty.
-	if NavigationServer3D.map_get_iteration_id(navigation_agent.get_navigation_map()) == 0:
-		return
-	if navigation_agent.is_navigation_finished():
-		return
 
-	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
-	print(navigation_agent.get_next_path_position())
-	var new_velocity: Vector3 = global_position.direction_to(next_path_position) * movement_speed
-	if navigation_agent.avoidance_enabled:
-		navigation_agent.set_velocity(new_velocity)
-	else:
-		_on_velocity_computed(new_velocity)
+func on_idle():
+	velocity = Vector3.ZERO
+	idle_timer = idle_wait
+	state= State.WAITMOVE
+	
+func on_wait(delta: float):
+	idle_timer -= delta
+	
+	if idle_timer <= 0:
+		var target = get_new_target()
+		var nav_map = navigation_agent_3d.get_navigation_map()
+		var safe = NavigationServer3D.map_get_closest_point(nav_map,target)
+		navigation_agent_3d.target_position = safe
+		if found:
+			state = State.PLAYERREACH
+		else:
+			state = State.MOVE
 
-func _on_velocity_computed(safe_velocity: Vector3) -> void:
-	global_position = global_position.move_toward(global_position + safe_velocity, physics_delta * movement_speed)
+
+func get_new_target():
+	
+	var off_x = randf_range(-15,15)
+	var off_z = randf_range(-15,15)
+	
+	
+	return global_transform.origin + Vector3(off_x,0,off_z)
+
+
+
+func on_move():
+	var current_pos = global_transform.origin
+	var next_position = navigation_agent_3d.get_next_path_position()
+	var direc = (next_position - current_pos).normalized()
+	velocity = direc * SPEED
+
+
+
+func on_targ():
+	var current_pos = global_transform.origin
+	var next_position = playpos
+	var direc = (next_position - current_pos).normalized()
+	velocity = direc * SPEED
+	
+	
+func p_reach():
+	state = State.IDLE
+	
+	
+	
+func _on_navigation_agent_3d_target_reached() -> void:
+	state = State.IDLE
+
+
+func _on_detec_area_entered(area: Area3D) -> void:
+	if area.is_in_group("Player"):
+		found = true

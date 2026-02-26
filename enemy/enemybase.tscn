@@ -2,18 +2,34 @@
 
 [ext_resource type="Script" uid="uid://dwa3t346ko37b" path="res://enemy/enemybase.gd" id="1_348p5"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_kdhey"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_348p5"]
 
-[node name="enemybase" type="Area3D" unique_id=1105669421]
+[sub_resource type="SphereShape3D" id="SphereShape3D_348p5"]
+radius = 10.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kdhey"]
+
+[node name="enemybase" type="CharacterBody3D" unique_id=1889331389]
 script = ExtResource("1_348p5")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1546598508]
 avoidance_enabled = true
 
+[node name="Area3D2" type="Area3D" parent="." unique_id=1608273590]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2" unique_id=385696034]
+shape = SubResource("CapsuleShape3D_348p5")
+
+[node name="detec" type="Area3D" parent="." unique_id=865773974]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="detec" unique_id=1183393324]
+shape = SubResource("SphereShape3D_348p5")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=943223702]
 mesh = SubResource("CapsuleMesh_kdhey")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=385696034]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1822970037]
 shape = SubResource("CapsuleShape3D_348p5")
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="area_entered" from="detec" to="." method="_on_detec_area_entered"]
