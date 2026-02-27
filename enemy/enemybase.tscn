@@ -9,10 +9,14 @@ radius = 10.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kdhey"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_nwalt"]
+radius = 5.0
+
 [node name="enemybase" type="CharacterBody3D" unique_id=1889331389]
 script = ExtResource("1_348p5")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1546598508]
+target_desired_distance = 5.0
 avoidance_enabled = true
 
 [node name="Area3D2" type="Area3D" parent="." unique_id=1608273590]
@@ -31,5 +35,17 @@ mesh = SubResource("CapsuleMesh_kdhey")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1822970037]
 shape = SubResource("CapsuleShape3D_348p5")
 
+[node name="lunge" type="Area3D" parent="." unique_id=641779924]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lunge" unique_id=545879975]
+shape = SubResource("SphereShape3D_nwalt")
+disabled = true
+
+[node name="lungin" type="Timer" parent="." unique_id=12187297]
+wait_time = 0.75
+one_shot = true
+
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="area_entered" from="detec" to="." method="_on_detec_area_entered"]
+[connection signal="area_entered" from="lunge" to="." method="_on_lunge_area_entered"]
+[connection signal="timeout" from="lungin" to="." method="_on_lungin_timeout"]

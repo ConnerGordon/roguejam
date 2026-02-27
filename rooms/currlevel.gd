@@ -52,11 +52,10 @@ func _physics_process(delta: float) -> void:
 		read = false
 		
 	if camerapos != null:
-		##print(camerapos.global_position.distance_to(player.global_position))
-		if camerapos.global_position.distance_to(player.global_position) > 70:
+		if camerapos.global_position.distance_to(player.global_position) > 50:
 			
 			player.camerabase = camerapos_2.position
-		elif camerapos.global_position.distance_to(player.global_position) < 70:
+		elif camerapos.global_position.distance_to(player.global_position) < 50:
 			player.camerabase = camerapos.position
 
 func _process(delta: float) -> void:

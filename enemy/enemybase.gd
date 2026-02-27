@@ -12,21 +12,25 @@ var idle_wait: float = 1.5 # default wait time
 var idle_timer: float = 0 # internal countdown timer
 var found := false
 
+@onready var lungin: Timer = $lungin
+
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 
 var playpos
-
+var lung = false
 
 func _physics_process(delta: float) -> void:
 	playpos = get_tree().get_first_node_in_group("Player").global_position
 	
-	
 	match state:
 		State.IDLE:
+			
 			on_idle()
 		State.WAITMOVE:
+			print("wait")
 			on_wait(delta)
 		State.MOVE:
+			print("mov")
 			on_move()
 		State.PLAYERTARG:
 			on_targ()
@@ -50,18 +54,20 @@ func on_wait(delta: float):
 		var safe = NavigationServer3D.map_get_closest_point(nav_map,target)
 		navigation_agent_3d.target_position = safe
 		if found:
-			state = State.PLAYERREACH
+			state = State.PLAYERTARG
 		else:
 			state = State.MOVE
 
 
 func get_new_target():
-	
-	var off_x = randf_range(-15,15)
-	var off_z = randf_range(-15,15)
-	
-	
-	return global_transform.origin + Vector3(off_x,0,off_z)
+	if found:
+		return playpos
+	else:
+		var off_x = randf_range(-15,15)
+		var off_z = randf_range(-15,15)
+		
+		
+		return global_transform.origin + Vector3(off_x,0,off_z)
 
 
 
@@ -74,21 +80,56 @@ func on_move():
 
 
 func on_targ():
+	var target = get_new_target()
+	var nav_map = navigation_agent_3d.get_navigation_map()
+	var safe = NavigationServer3D.map_get_closest_point(nav_map,target)
+	navigation_agent_3d.target_position = safe
+		
 	var current_pos = global_transform.origin
-	var next_position = playpos
+	var next_position = navigation_agent_3d.get_next_path_position()
 	var direc = (next_position - current_pos).normalized()
+	
+	
 	velocity = direc * SPEED
 	
 	
 func p_reach():
-	state = State.IDLE
+	if lung == false:
+		lung = true
+		velocity = Vector3.ZERO
+		lungin.start()
+	
 	
 	
 	
 func _on_navigation_agent_3d_target_reached() -> void:
-	state = State.IDLE
+	if found:
+		state = State.PLAYERREACH
+	else:
+		state = State.IDLE
 
 
 func _on_detec_area_entered(area: Area3D) -> void:
-	if area.is_in_group("Player"):
+	
+	if area.get_parent().is_in_group("Player") && found != true:
+		
 		found = true
+		state = State.WAITMOVE
+		idle_timer = 0
+
+
+func _on_lunge_area_entered(area: Area3D) -> void:
+	var current_pos = global_transform.origin
+	var next_position = playpos
+	var direc = (next_position - current_pos).normalized()
+	
+
+
+func _on_lungin_timeout() -> void:
+	print("pass")
+	
+	var current_pos = global_transform.origin
+	var next_position = playpos
+	var direc = (next_position - current_pos).normalized()
+	velocity = direc * SPEED * 4
+	lung = false
