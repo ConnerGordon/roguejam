@@ -11,10 +11,15 @@ var state : State = State.IDLE
 var idle_wait: float = 1.5 # default wait time
 var idle_timer: float = 0 # internal countdown timer
 var found := false
+@onready var movetimer: Timer = $movetimer
+
+signal pdamage()
+
 
 @onready var lungin: Timer = $lungin
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
+@onready var lungecd: Timer = $lungecd
 
 var playpos
 var lung = false
@@ -98,6 +103,8 @@ func p_reach():
 		lung = true
 		velocity = Vector3.ZERO
 		lungin.start()
+		lungecd.start()
+		movetimer.start()
 	
 	
 	
@@ -118,10 +125,6 @@ func _on_detec_area_entered(area: Area3D) -> void:
 		idle_timer = 0
 
 
-func _on_lunge_area_entered(area: Area3D) -> void:
-	var current_pos = global_transform.origin
-	var next_position = playpos
-	var direc = (next_position - current_pos).normalized()
 	
 
 
@@ -132,4 +135,17 @@ func _on_lungin_timeout() -> void:
 	var next_position = playpos
 	var direc = (next_position - current_pos).normalized()
 	velocity = direc * SPEED * 4
+
+
+func _on_lungecd_timeout() -> void:
+	velocity = Vector3.ZERO
+	
+	
+
+func _on_movetimer_timeout() -> void:
 	lung = false
+	state = State.PLAYERTARG
+	
+	
+func _on_lunge_area_entered(area: Area3D) -> void:
+	pdamage.emit()
