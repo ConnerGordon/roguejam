@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://drhpj7xk2moe1"]
+
+[ext_resource type="Script" uid="uid://ccgx4sc6ibwds" path="res://node.gd" id="1_nhcg0"]
+
+[sub_resource type="Curve" id="Curve_nhcg0"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 100), 0.0, -100.0, 0, 1, Vector2(1, 0), -100.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_r186m"]
+_limits = [0.0, 50.0, 0.0, 1.0]
+_data = [Vector2(0, 50), 0.0, -50.0, 0, 1, Vector2(1, 0), -50.0, 0.0, 1, 0]
+point_count = 2
+
+[node name="Node" type="Node" unique_id=1843680054]
+script = ExtResource("1_nhcg0")
+health_curve = SubResource("Curve_nhcg0")
+num_curve = SubResource("Curve_r186m")

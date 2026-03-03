@@ -5,6 +5,7 @@
 [ext_resource type="MeshLibrary" uid="uid://db21ofkxjnyfe" path="res://meshlibrary/mainmesh.meshlib" id="3_dwpy8"]
 [ext_resource type="PackedScene" uid="uid://b5afoavo0v3rb" path="res://player/upgrade_manager.tscn" id="4_0bahr"]
 [ext_resource type="Script" uid="uid://yxvtijrgn2l2" path="res://grid_map.gd" id="4_1ud1c"]
+[ext_resource type="PackedScene" uid="uid://drhpj7xk2moe1" path="res://rooms/scalingmanager.tscn" id="6_dwpy8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_37dr8"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -126,3 +127,5 @@ size = Vector3(85.40728, 19.828156, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.833065, 0.16305113, -45.739323)
 
 [node name="upgradeManager" parent="." unique_id=282005707 instance=ExtResource("4_0bahr")]
+
+[node name="Node" parent="." unique_id=1843680054 instance=ExtResource("6_dwpy8")]

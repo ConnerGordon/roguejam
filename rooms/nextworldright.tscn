@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://yxvtijrgn2l2" path="res://grid_map.gd" id="4_5n48o"]
 [ext_resource type="PackedScene" uid="uid://b5afoavo0v3rb" path="res://player/upgrade_manager.tscn" id="4_y5ql7"]
 [ext_resource type="PackedScene" uid="uid://b07rrbcve7u6u" path="res://enemy/enemybase.tscn" id="5_y5ql7"]
+[ext_resource type="PackedScene" uid="uid://drhpj7xk2moe1" path="res://rooms/scalingmanager.tscn" id="7_y5ql7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_37dr8"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -209,3 +210,5 @@ material = SubResource("StandardMaterial3D_5n48o")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.71016, -1.4283829, 67.13287)
 
 [node name="upgradeManager" parent="." unique_id=282005707 instance=ExtResource("4_y5ql7")]
+
+[node name="Node" parent="." unique_id=1843680054 instance=ExtResource("7_y5ql7")]

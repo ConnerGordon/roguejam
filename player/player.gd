@@ -36,8 +36,6 @@ var var_health : int :
 			Engine.time_scale = 0.0
 
 
-
-
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	
@@ -71,18 +69,15 @@ func _physics_process(delta: float) -> void:
 	movedir.y = 0.0
 	movedir = movedir.normalized()
 	
-	velocity = velocity.move_toward(movedir * SPEED, accel*delta )
+	velocity = velocity.move_toward(movedir * SPEED * var_health/1000, accel*delta )
 	if Input.is_action_just_pressed("dash") && dashing.is_stopped():
-		
+		var_health -= 100
 		velocity = velocity.move_toward(last * SPEED * 2, accel)
 		dashing.start()
 	
 	
 	
-	if movedir.length() > 0.2:
-		last = movedir
-	var target = Vector3.BACK.signed_angle_to(last,Vector3.UP)
-	rotpiv.global_rotation.y = lerp_angle(rotpiv.rotation.y, target, rotspd * delta)
+	
 	
 	#if direction:
 		#velocity.x = direction.x * SPEED

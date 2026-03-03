@@ -13,7 +13,7 @@ var idle_timer: float = 0 # internal countdown timer
 var found := false
 @onready var movetimer: Timer = $movetimer
 
-signal pdamage()
+signal pdamage(dam: int)
 
 
 @onready var lungin: Timer = $lungin
@@ -21,8 +21,17 @@ signal pdamage()
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var lungecd: Timer = $lungecd
 
+
+
 var playpos
 var lung = false
+
+
+
+@export var damage : int = 10
+@export var health : int = 1
+
+
 
 func _physics_process(delta: float) -> void:
 	playpos = get_tree().get_first_node_in_group("Player").global_position
@@ -32,15 +41,16 @@ func _physics_process(delta: float) -> void:
 			
 			on_idle()
 		State.WAITMOVE:
-			print("wait")
+			
 			on_wait(delta)
 		State.MOVE:
-			print("mov")
+			
 			on_move()
 		State.PLAYERTARG:
 			on_targ()
 		State.PLAYERREACH:
 			p_reach()
+			
 	move_and_slide()
 	
 
@@ -99,8 +109,9 @@ func on_targ():
 	
 	
 func p_reach():
-	if lung == false:
-		lung = true
+	if movetimer.is_stopped():
+		print("gap")
+		
 		velocity = Vector3.ZERO
 		lungin.start()
 		lungecd.start()
@@ -129,23 +140,28 @@ func _on_detec_area_entered(area: Area3D) -> void:
 
 
 func _on_lungin_timeout() -> void:
-	print("pass")
 	
-	var current_pos = global_transform.origin
-	var next_position = playpos
-	var direc = (next_position - current_pos).normalized()
-	velocity = direc * SPEED * 4
+	if lung == false:
+		
+		var current_pos = global_transform.origin
+		var next_position = playpos
+		var direc = (next_position - current_pos).normalized()
+		velocity = direc * SPEED * 4
+		lung = true
 
 
 func _on_lungecd_timeout() -> void:
+	
 	velocity = Vector3.ZERO
 	
 	
 
 func _on_movetimer_timeout() -> void:
+	
 	lung = false
 	state = State.PLAYERTARG
 	
 	
 func _on_lunge_area_entered(area: Area3D) -> void:
-	pdamage.emit()
+	if area.is_in_group("Player"):
+		pdamage.emit()
