@@ -6,24 +6,36 @@ extends GridMap
 
 @export var enemy : PackedScene
 
-
+func _ready():
+	pass
 
 
 
 func callspawn() -> void:
 	print(Encount)
 	if enemy != null:
-		while Encount > 0:
-			var inv = false
-			var en = enemy.instantiate()
-			get_tree().get_root().add_child(en)
+		for i in range(Encount):
+			print("spawned enemy")
+			#var inv = false
 			
-			while inv == false:
-				var mappout = local_to_map(Vector3(randf_range(-80,80),0,randf_range(-75,75)))
-				if get_cell_item(mappout) == 0:
-					en.position =  map_to_local(mappout)
+			var en = enemy.instantiate()
+			en.health = enhealth
+			en.damage = enhealth*10
+			get_tree().get_root().get_child(0).add_child(en)
+			
+			
+			#while inv == false:
+				#var mappout = local_to_map(Vector3(randf_range(-80,80),0,randf_range(-75,75)))
+				#if get_cell_item(mappout) == 0:
+			var rand_empty = get_used_cells_by_item(0).pick_random()
+			en.global_position = to_global(map_to_local(rand_empty))
+			
+			
+					#en.global_position =  map_to_local(mappout)
 					#print(en.position)
-					set_cell_item(mappout,1)
-					Encount -= 1
-					inv = true
+			set_cell_item(rand_empty,1)
+			#Encount -= 1
+					#inv = true
 					
+	#print(get_used_cells_by_item(1))
+	visible = false

@@ -160,4 +160,5 @@ func _on_swingabl_timeout() -> void:
 
 func _on_hitbox_area_entered(area: Area3D) -> void:
 	if area.is_in_group("enemy"):
-		area.damag
+		area.damag()
+		var_health += 200

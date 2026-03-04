@@ -16,8 +16,6 @@ radius = 3.3510742
 
 [node name="enemybase" type="CharacterBody3D" unique_id=1889331389]
 script = ExtResource("1_348p5")
-damage = null
-health = null
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1546598508]
 target_desired_distance = 5.0
@@ -43,6 +41,7 @@ shape = SubResource("SphereShape3D_6b5m7")
 shape = SubResource("SphereShape3D_348p5")
 
 [node name="lunge" type="Area3D" parent="." unique_id=641779924]
+monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="lunge" unique_id=545879975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8598225, 0)

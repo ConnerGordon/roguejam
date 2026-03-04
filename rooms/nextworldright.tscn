@@ -56,7 +56,7 @@ shadow_enabled = true
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -57.100807, 0.2265048, 18.371038)
 
 [node name="rotatebase" type="Node3D" parent="." unique_id=1178578798]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, 0)
+transform = Transform3D(0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, 0.7071067, 0, 0, 0)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="rotatebase" unique_id=2078680416]
 navigation_mesh = SubResource("NavigationMesh_5n48o")
@@ -84,7 +84,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.413475, 0)
 [node name="flooring" type="Node3D" parent="rotatebase/mapping" unique_id=549509208]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="rotatebase/mapping/flooring" unique_id=1439974826]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.96181, 6.0980897, -30.062527)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.96181, 6.168776, -30.062527)
 use_collision = true
 size = Vector3(111.8114, 1, 36)
 material = SubResource("StandardMaterial3D_r137e")
@@ -100,17 +100,17 @@ use_collision = true
 size = Vector3(55.851563, 1, 4)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="rotatebase/mapping/flooring" unique_id=485063749]
-transform = Transform3D(-1.1920929e-07, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -1.1920929e-07, 10.490641, 6.0967417, 50.32202)
+transform = Transform3D(-1.1920929e-07, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -1.1920929e-07, 10.490641, 6.1379457, 50.32202)
 use_collision = true
 size = Vector3(10, 1, 4.1816406)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="rotatebase/mapping/flooring" unique_id=1297304954]
-transform = Transform3D(-1.1920929e-07, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -1.1920929e-07, 8.0191145, 6.113016, 21.987526)
+transform = Transform3D(-1.1920929e-07, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -1.1920929e-07, 8.019115, 6.1514993, 21.987528)
 use_collision = true
 size = Vector3(52.133392, 1, 8.091064)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="rotatebase/mapping/flooring" unique_id=1172020651]
-transform = Transform3D(-8.940697e-08, 0, -1, 0, 1, 0, 1, 0, -8.940697e-08, 19.858295, 6.229042, 7.9170237)
+transform = Transform3D(-8.940697e-08, 0, -1, 0, 1, 0, 1, 0, -8.940697e-08, 19.858295, 6.196003, 7.9170237)
 use_collision = true
 size = Vector3(120, 1, 16)
 material = SubResource("StandardMaterial3D_xpu7g")

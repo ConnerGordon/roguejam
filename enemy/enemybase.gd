@@ -25,24 +25,29 @@ signal pdamage(dam: int)
 
 var playpos
 var lung = false
-
+signal scoreinc(die:int)
 
 
 @export var damage : int = 10
 @export var health : int = 1
+@onready var lunge: Area3D = $lunge
+
+var var_health : float :
+	set(new_health):
+		var_health = new_health
+		if var_health <= 0:
+			scoreinc.emit(health*1.2)
+
+
+func _ready() -> void:
+	var_health = health
 
 
 
 
 
-
-#func damage():
-	
-
-
-
-
-
+func damag(taken:int)->void:
+	var_health -= taken
 
 
 
@@ -176,13 +181,14 @@ func _on_lungin_timeout() -> void:
 		var next_position = playpos
 		var direc = (next_position - current_pos).normalized()
 		velocity = direc * SPEED * 4
+		lunge.monitoring = true
 		lung = true
 
 
 func _on_lungecd_timeout() -> void:
 	
 	velocity = Vector3.ZERO
-	
+	lunge.monitoring= false
 	
 
 func _on_movetimer_timeout() -> void:
@@ -194,3 +200,5 @@ func _on_movetimer_timeout() -> void:
 func _on_lunge_area_entered(area: Area3D) -> void:
 	if area.is_in_group("Player"):
 		pdamage.emit()
+		
+		
