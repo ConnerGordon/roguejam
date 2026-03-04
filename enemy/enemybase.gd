@@ -33,8 +33,37 @@ var lung = false
 
 
 
+
+
+
+#func damage():
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 func _physics_process(delta: float) -> void:
 	playpos = get_tree().get_first_node_in_group("Player").global_position
+	
+	rotation_degrees += Vector3(0,20,0)
+	
 	
 	match state:
 		State.IDLE:
@@ -110,7 +139,7 @@ func on_targ():
 	
 func p_reach():
 	if movetimer.is_stopped():
-		print("gap")
+		
 		
 		velocity = Vector3.ZERO
 		lungin.start()

@@ -4,24 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://xo534iykaw0s" path="res://player/node_3d.tscn" id="2_bt500"]
 [ext_resource type="Script" uid="uid://yxvtijrgn2l2" path="res://grid_map.gd" id="3_bt500"]
 [ext_resource type="MeshLibrary" uid="uid://db21ofkxjnyfe" path="res://meshlibrary/mainmesh.meshlib" id="3_rtawu"]
-[ext_resource type="Texture2D" uid="uid://cge1eq2e3d5vh" path="res://asphalt.jpg" id="4_3njn2"]
 [ext_resource type="PackedScene" uid="uid://b07rrbcve7u6u" path="res://enemy/enemybase.tscn" id="4_vjbv0"]
-[ext_resource type="PackedScene" uid="uid://b5afoavo0v3rb" path="res://player/upgrade_manager.tscn" id="4_yr8r3"]
-[ext_resource type="Material" uid="uid://hsyerogvy1a4" path="res://stndwalldark.tres" id="5_vjbv0"]
 [ext_resource type="PackedScene" uid="uid://drhpj7xk2moe1" path="res://rooms/scalingmanager.tscn" id="9_vjbv0"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_3njn2"]
 vertices = PackedVector3Array(-59.5, 0.45, -11.500002, -59.5, 0.45, 19.499998, 71.5, 0.45, 19.499998, 71.5, 0.45, -11.500002)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m2mo6"]
-albedo_texture = ExtResource("4_3njn2")
-uv1_scale = Vector3(1, 5, 1)
-
-[sub_resource type="Environment" id="Environment_yr8r3"]
-fog_light_color = Color(0.1267241, 0.14171177, 0.16503283, 1)
-fog_light_energy = 0.01
-volumetric_fog_density = 0.0
 
 [sub_resource type="Curve" id="Curve_m2mo6"]
 _limits = [0.0, 100.0, 0.0, 1.0]
@@ -33,8 +21,26 @@ _limits = [0.0, 50.0, 0.0, 1.0]
 _data = [Vector2(0, 50), 0.0, -50.0, 0, 1, Vector2(1, 0), -50.0, 0.0, 1, 0]
 point_count = 2
 
-[node name="base_world" type="Node3D" unique_id=1758586049]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yr8r3"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_hxh21"]
+sky_material = SubResource("ProceduralSkyMaterial_yr8r3")
+
+[sub_resource type="Environment" id="Environment_3njn2"]
+background_mode = 2
+sky = SubResource("Sky_hxh21")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rtawu"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[node name="base_world" type="Node3D" unique_id=1758586049 node_paths=PackedStringArray("grid_map")]
 script = ExtResource("1_85lwy")
+grid_map = NodePath("rotatebase/NavigationRegion3D/GridMap")
 
 [node name="camerapos" type="Node3D" parent="." unique_id=1812845446]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.803, 20, 55.608)
@@ -70,13 +76,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.193739, 0)
 
 [node name="floor" type="CSGBox3D" parent="rotatebase/Node3D" unique_id=957249893]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.610384, 6.64507, 3.5664692)
-material_override = SubResource("StandardMaterial3D_m2mo6")
 use_collision = true
 size = Vector3(141.22076, 1, 31.968872)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="rotatebase/Node3D" unique_id=1219113695]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9086466, 20.088783, -12.591491)
-material_override = ExtResource("5_vjbv0")
 use_collision = true
 size = Vector3(135.71594, 26.284668, 1)
 
@@ -84,24 +88,32 @@ size = Vector3(135.71594, 26.284668, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.310776, 18.678337, 3.6032524)
 use_collision = true
 size = Vector3(1, 29.284958, 32.02896)
-material = ExtResource("5_vjbv0")
 
 [node name="props" type="Node3D" parent="rotatebase" unique_id=17220906]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 72.609375, -1.045613, 3.6664963)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=655791832]
-environment = SubResource("Environment_yr8r3")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1107977062]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_bake_mode = 1
-shadow_enabled = true
-
 [node name="player" parent="." unique_id=2002233893 instance=ExtResource("2_bt500")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -37.513004, 0.001465559, 43.92865)
-
-[node name="upgradeManager" parent="." unique_id=282005707 instance=ExtResource("4_yr8r3")]
 
 [node name="Node" parent="." unique_id=1843680054 instance=ExtResource("9_vjbv0")]
 health_curve = SubResource("Curve_m2mo6")
 num_curve = SubResource("Curve_5vsmo")
+
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="." unique_id=504541537]
+environment = SubResource("Environment_3njn2")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="WorldEnvironment2" unique_id=1600950739]
+transform = Transform3D(0.70647734, 0, 0.7077361, 0, 1, 0, -0.7077361, 0, 0.70647734, 19.872898, 6.9363117, 8.062508)
+use_collision = true
+size = Vector3(136.88068, 12.573364, 0.9303868)
+material = SubResource("StandardMaterial3D_rtawu")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="WorldEnvironment2" unique_id=826704441]
+transform = Transform3D(0.7026501, 0, -0.71153593, 0, 1, 0, 0.71153593, 0, 0.7026501, -39.588123, 6.9363117, 45.902218)
+use_collision = true
+size = Vector3(30.49363, 12.573364, 0.9303868)
+material = SubResource("StandardMaterial3D_rtawu")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=514447002]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true

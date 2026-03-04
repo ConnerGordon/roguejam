@@ -21,7 +21,7 @@ var next
 @onready var props: Node3D = $rotatebase/props
 @onready var camerapos: Node3D = $camerapos
 @onready var camerapos_2: Node3D = $camerapos2
-@onready var grid_map: GridMap = $rotatebase/GridMap
+@export var grid_map: GridMap
 
 
 @export var door : PackedScene = preload("res://gameobjects/door.tscn")
@@ -57,7 +57,7 @@ func _ready() -> void:
 		next = "res://rooms/nextworldright.tscn"
 		
 	player.camerabase = camerapos.global_position
-	player.var_health = 10000
+
 
 
 func change(g:bool)->void:
@@ -68,15 +68,13 @@ func change(g:bool)->void:
 
 func _physics_process(delta: float) -> void:
 	if grid_map != null && read:
+		
 		grid_map.enhealth = node.get_health()
 		grid_map.Encount = node.get_count()
-		print(grid_map.enhealth)
-		print(grid_map.Encount)
 		grid_map.callspawn()
 		read = false
 	
-	
-	player.var_health -= delta
+
 
 func _process(delta: float) -> void:
 	
@@ -87,8 +85,10 @@ func _process(delta: float) -> void:
 		elif camerapos.global_position.distance_to(player.global_position) < 50:
 			player.camerabase = camerapos.position
 	
-	if Input.is_action_just_pressed("interact") && leavable:
+	if Input.is_action_just_pressed("interact"):
 		read=true
+		node.inc()
+		
 		get_tree().change_scene_to_file(next)
 		
 

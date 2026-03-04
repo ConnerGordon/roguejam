@@ -10,6 +10,7 @@ static var room := 0
 
 
 func roomrate()->float:
+	
 	return 1-room/50.0
 
 func get_health()-> float:
@@ -17,3 +18,6 @@ func get_health()-> float:
 	
 func get_count()->float:
 	return num_curve.sample(roomrate())
+
+func inc():
+	room+=1

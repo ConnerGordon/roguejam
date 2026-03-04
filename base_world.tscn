@@ -12,12 +12,12 @@
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="Sky" id="Sky_hxh21"]
+[sub_resource type="Sky" id="Sky_i2nkp"]
 sky_material = SubResource("ProceduralSkyMaterial_37dr8")
 
 [sub_resource type="Environment" id="Environment_4qpal"]
 background_mode = 2
-sky = SubResource("Sky_hxh21")
+sky = SubResource("Sky_i2nkp")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -28,8 +28,9 @@ albedo_color = Color(0.22352941, 1, 1, 1)
 transparency = 1
 albedo_color = Color(1, 1, 1, 0)
 
-[node name="base_world" type="Node3D" unique_id=1758586049]
+[node name="base_world" type="Node3D" unique_id=1758586049 node_paths=PackedStringArray("grid_map")]
 script = ExtResource("1_smxkr")
+grid_map = NodePath("rotatebase/GridMap")
 
 [node name="camerapos" type="Node3D" parent="." unique_id=2079931810]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.851269, 11.770403, 28.163788)

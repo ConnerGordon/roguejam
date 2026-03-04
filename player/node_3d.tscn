@@ -2,272 +2,48 @@
 
 [ext_resource type="Script" uid="uid://bixeksgwq3vpy" path="res://player/player.gd" id="1_7usp6"]
 [ext_resource type="PackedScene" uid="uid://tc7cafrg3x7e" path="res://ui/canvas_layer.tscn" id="2_4tegu"]
+[ext_resource type="PackedScene" uid="uid://ct1r6lkrpvngx" path="res://player/player_blade.tscn" id="2_fs8bw"]
 [ext_resource type="Script" uid="uid://cf5k3x2g7xnnk" path="res://ui/canvas_layer.gd" id="3_fs8bw"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a202f"]
+[sub_resource type="Curve" id="Curve_fs8bw"]
+_limits = [0.0, 35.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 167.76756, 0, 0, Vector2(0.03649634, 10.964684), 57.719353, 57.719353, 0, 0, Vector2(1, 35), 0.0, 0.0, 0, 0]
+point_count = 3
 
-[sub_resource type="Animation" id="Animation_7usp6"]
-length = 0.75
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.1, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 1.5707964)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../CollisionShape3D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.1, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../CollisionShape3D:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 1.5707964)]
-}
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xce6j"]
+height = 2.08313
+radius = 3.0117188
 
-[sub_resource type="Animation" id="Animation_fs8bw"]
-resource_name = "chopodoom"
-length = 0.75
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../CollisionShape3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.56666666),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 1.5707964), Vector3(0, 0, 3.1415927), Vector3(0.7853982, 0, 3.1415927), Vector3(1.5707964, 0, 3.1415927)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../CollisionShape3D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.33333334, 0.56666666),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(1.1, 0, 0), Vector3(0, 1.7, 0), Vector3(0, 1.1235993, 0.8107163), Vector3(0, 0, 1.1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.33333334, 0.56666666),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(1.1, 0, 0), Vector3(0, 1.7, 0), Vector3(0, 1.1235993, 0.8107163), Vector3(0, 0, 1.1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.33333334, 0.56666666),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 1.5707964), Vector3(0, 0, 3.1415927), Vector3(0.7853982, 0, 3.1415927), Vector3(1.5707964, 0, 3.1415927)]
-}
-
-[sub_resource type="Animation" id="Animation_jnk4n"]
-resource_name = "swingbase"
-length = 0.75
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.36, 0.75),
-"transitions": PackedFloat32Array(1.5691684, 1.5691684, 1.5691684),
-"update": 0,
-"values": [Vector3(1.1, 0, 0), Vector3(0, 0, 1.1), Vector3(-1.1, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.36, 0.75),
-"transitions": PackedFloat32Array(1.5691684, 1.5691682, 1.5691684),
-"update": 0,
-"values": [Vector3(0, 0, 1.5707964), Vector3(0, -1.5707964, 1.5707964), Vector3(0, -3.1415927, 1.5707964)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../CollisionShape3D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.36, 0.75),
-"transitions": PackedFloat32Array(1.5691684, 1.5691684, 1.5691684),
-"update": 0,
-"values": [Vector3(1.1, 0, 0), Vector3(0, 0, 1.1), Vector3(-1.1, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../CollisionShape3D:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.36, 0.75),
-"transitions": PackedFloat32Array(1.5691684, 1.5691684, 1.5691684),
-"update": 0,
-"values": [Vector3(0, 0, 1.5707964), Vector3(0, -1.5707964, 1.5707964), Vector3(0, -3.1415927, 1.5707964)]
-}
-
-[sub_resource type="Animation" id="Animation_4tegu"]
-resource_name = "swingbase2"
-length = 0.75
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.375, 0.73333335),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-1.1, 0, 0), Vector3(0, 0, 1.1), Vector3(1.1, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.375, 0.73333335),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, -3.1415927, 1.5707964), Vector3(0, -1.5707964, 1.5707964), Vector3(0, 0, 1.5707964)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../CollisionShape3D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.375, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-1.1, 0, 0), Vector3(0, 0, 1.1), Vector3(1.1, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../CollisionShape3D:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.375, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 1.5707964), Vector3(0, 1.5707964, 1.5707964), Vector3(0, 3.1415927, 1.5707964)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4tegu"]
-_data = {
-&"RESET": SubResource("Animation_7usp6"),
-&"chopodoom": SubResource("Animation_fs8bw"),
-&"swingbase": SubResource("Animation_jnk4n"),
-&"swingbase2": SubResource("Animation_4tegu")
-}
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_4xowi"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_7usp6"]
-radius = 0.1
-height = 1.5
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7usp6"]
-radius = 0.1
-height = 1.5
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_iklkk"]
+height = 2.216568
+radius = 3.5014648
 
 [node name="player" type="CharacterBody3D" unique_id=2002233893 groups=["Player"]]
 script = ExtResource("1_7usp6")
+spincurve = SubResource("Curve_fs8bw")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2108912301]
 transform = Transform3D(1, 0, 0, 0, 0.65512335, 0.7555219, 0, -0.75552195, 0.65512335, 0, 10.496228, 10)
 
 [node name="hurtbox" type="CollisionShape3D" parent="." unique_id=1316341515 groups=["Player"]]
-shape = SubResource("CapsuleShape3D_a202f")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1033325, 0)
+shape = SubResource("CylinderShape3D_xce6j")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=482461232]
-root_node = NodePath("../rotpiv/sword/MeshInstance3D2")
-libraries/ = SubResource("AnimationLibrary_4tegu")
+[node name="hitbox" type="Area3D" parent="." unique_id=307486585]
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox" unique_id=135892997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2628479, 0)
+shape = SubResource("CylinderShape3D_iklkk")
 
 [node name="rotpiv" type="Node3D" parent="." unique_id=1756052829 groups=["Player"]]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rotpiv" unique_id=2115782309]
-mesh = SubResource("CapsuleMesh_4xowi")
-
-[node name="sword" type="Area3D" parent="rotpiv" unique_id=500320551 groups=["Player"]]
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="rotpiv/sword" unique_id=548931003]
-transform = Transform3D(-4.3711385e-08, -0.9999999, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 0.9999998, 1.1, 0, 0)
-mesh = SubResource("CapsuleMesh_7usp6")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rotpiv/sword" unique_id=1914794511]
-transform = Transform3D(-4.3711385e-08, -0.9999999, 0, 0.9999999, -4.3711385e-08, 0, 0, 0, 0.99999976, 1.1, 0, 0)
-shape = SubResource("CapsuleShape3D_7usp6")
+[node name="uploads_files_231160_beyblade3" parent="rotpiv" unique_id=311779798 instance=ExtResource("2_fs8bw")]
 
 [node name="UI" parent="." unique_id=1132305213 instance=ExtResource("2_4tegu")]
 script = ExtResource("3_fs8bw")
 
-[node name="Timer1" type="Timer" parent="." unique_id=1984641328]
-wait_time = 1.5
-one_shot = true
-
-[node name="Timer2" type="Timer" parent="." unique_id=1954593629]
-wait_time = 1.5
+[node name="cooldown" type="Timer" parent="." unique_id=1954593629]
 one_shot = true
 
 [node name="swingabl" type="Timer" parent="." unique_id=1765698555]
@@ -278,6 +54,9 @@ one_shot = true
 wait_time = 0.25
 one_shot = true
 
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="swingabl" to="." method="_on_swingabl_timeout"]
 [connection signal="timeout" from="dashing" to="." method="_on_dashing_timeout"]
 
 [editable path="UI"]

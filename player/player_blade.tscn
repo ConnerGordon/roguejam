@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ct1r6lkrpvngx"]
+
+[ext_resource type="PackedScene" uid="uid://dswbkyxdjdjul" path="res://uploads_files_231160_beyblade3.glb" id="1_tr2k2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vihc"]
+albedo_color = Color(0, 0.49803922, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ek0n1"]
+albedo_color = Color(1, 0, 0.13333334, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12vfq"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fbb5j"]
+albedo_color = Color(0.3470683, 0.3470683, 0.3470683, 1)
+metallic = 0.39
+metallic_specular = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_my5yo"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="uploads_files_231160_beyblade3" unique_id=311779798 instance=ExtResource("1_tr2k2")]
+
+[node name="Beyblade" parent="." index="0" unique_id=841893686]
+surface_material_override/0 = SubResource("StandardMaterial3D_5vihc")
+surface_material_override/1 = SubResource("StandardMaterial3D_ek0n1")
+surface_material_override/2 = SubResource("StandardMaterial3D_12vfq")
+surface_material_override/3 = SubResource("StandardMaterial3D_fbb5j")
+surface_material_override/4 = SubResource("StandardMaterial3D_my5yo")

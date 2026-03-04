@@ -8,14 +8,24 @@ class_name Player
 @onready var rotspd = 15
 
 @onready var camera_3d: Camera3D = $Camera3D
-@onready var timer_1: Timer = $Timer1
-@onready var timer_2: Timer = $Timer2
+
+
+
 @onready var swingabl: Timer = $swingabl
 @onready var dashing: Timer = $dashing
+
+@onready var hitbox: Area3D = $hitbox
+@onready var cooldown: Timer = $cooldown
+
+
+
+@export var spincurve : Curve
 
 var camerabase
 var last := Vector3.BACK
 
+
+@onready var starthp = 10000.0
 
 const SPEED = 15.0
 const accel = SPEED * 20.0/8.0
@@ -27,17 +37,23 @@ var gun = false
 
 signal byebye
 
-var var_health : int :
+var var_health : float :
 	set(new_health):
 		var_health = new_health
-		label.text = "Health: " + str(var_health)
+		label.text = "velocity: " + str(int(var_health))
 		if var_health <1:
 			byebye.emit()
 			Engine.time_scale = 0.0
 
 
+
+func _ready() -> void:
+	var_health = starthp
+	
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
+	
 	
 	
 	
@@ -53,9 +69,10 @@ func _physics_process(delta: float) -> void:
 	
 	
 	
-	
+	var_health -= delta * 50
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity.y += -9.8 * delta
+		
 
 	##if Input.is_anything_pressed() == false:
 		##velocity= velocity.clampf(-7.5,7.5)
@@ -76,8 +93,10 @@ func _physics_process(delta: float) -> void:
 		dashing.start()
 	
 	
+	if movedir.length() > 0.2:
+		last = movedir
 	
-	
+	rotpiv.rotation_degrees +=Vector3(0, spincurve.sample(var_health/starthp),0)
 	
 	#if direction:
 		#velocity.x = direction.x * SPEED
@@ -87,20 +106,14 @@ func _physics_process(delta: float) -> void:
 		#velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	if sword:
-		if Input.is_action_just_pressed("attack") && swingabl.is_stopped():
-			if timer_2.is_stopped() == false:
-				animation_player.play("chopodoom")
-				timer_2.stop()
-			
-			elif timer_1.is_stopped() == false:
-				animation_player.play("swingbase2")
-				timer_2.start()
-				timer_1.stop()
-			
-			else:
-				timer_1.start()
-				animation_player.play("swingbase")
+		if Input.is_action_just_pressed("attack") && swingabl.is_stopped()&& cooldown.is_stopped():
+			hitbox.monitoring = true
 			swingabl.start()
+			
+			
+			
+			
+			
 		
 			
 	
@@ -138,3 +151,13 @@ func _on_dashing_timeout() -> void:
 ##
 ##
 ##
+
+
+func _on_swingabl_timeout() -> void:
+	hitbox.monitoring = false
+	cooldown.start()
+
+
+func _on_hitbox_area_entered(area: Area3D) -> void:
+	if area.is_in_group("enemy"):
+		area.damag

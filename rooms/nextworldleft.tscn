@@ -24,8 +24,9 @@ glow_enabled = true
 vertices = PackedVector3Array(16.5, 0.45, -50, 27.5, 0.45, -50, 27.5, 0.45, -63.5, 16.5, 0.45, -63.5, 16.25, 0.45, -47.75, 12.5, 0.45, -47.75, 12.5, 0.45, -41.75, 27.5, 0.45, -41.75, 12.25, 0.45, -39.5, 8.5, 0.45, -39.5, 8.25, 0.45, -35.5, 4.5, 0.45, -35.5, 4.25, 0.45, -31.5, 0.5, 0.45, -31.5, 0.5, 0.45, -21.75, 27.5, 0.45, -21.75, 0.25, 0.45, -19.5, -3.5, 0.45, -19.5, -3.75, 0.45, -15.5, -7.5, 0.45, -15.5, -7.75, 0.45, -11.5, -9.75, 0.45, -11.5, -9.75, 0.45, 19.5, 27.5, 0.45, 19.5, -31.75, 0.45, -3.5, -39.75, 0.45, -3.5, -39.75, 0.45, 0.25, -23.75, 0.45, -7.5, -31.5, 0.45, -7.5, -23.5, 0.45, -11.5, -42, 0.45, 0.5, -42, 0.45, 19.5, -59.5, 0.45, 0.5, -59.5, 0.45, 19.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(6, 5, 4), PackedInt32Array(4, 0, 1), PackedInt32Array(1, 7, 4), PackedInt32Array(4, 7, 6), PackedInt32Array(10, 9, 8), PackedInt32Array(12, 11, 10), PackedInt32Array(14, 13, 12), PackedInt32Array(8, 6, 7), PackedInt32Array(14, 12, 10), PackedInt32Array(8, 7, 10), PackedInt32Array(10, 7, 15), PackedInt32Array(10, 15, 14), PackedInt32Array(18, 17, 16), PackedInt32Array(20, 19, 18), PackedInt32Array(16, 14, 15), PackedInt32Array(22, 21, 20), PackedInt32Array(18, 16, 15), PackedInt32Array(20, 18, 22), PackedInt32Array(22, 18, 23), PackedInt32Array(23, 18, 15), PackedInt32Array(26, 25, 24), PackedInt32Array(24, 28, 27), PackedInt32Array(27, 29, 21), PackedInt32Array(26, 31, 30), PackedInt32Array(24, 27, 21), PackedInt32Array(26, 24, 31), PackedInt32Array(31, 24, 22), PackedInt32Array(22, 24, 21), PackedInt32Array(33, 32, 31), PackedInt32Array(31, 32, 30)]
 
-[node name="base_world" type="Node3D" unique_id=1758586049]
+[node name="base_world" type="Node3D" unique_id=1758586049 node_paths=PackedStringArray("grid_map")]
 script = ExtResource("1_2rmps")
+grid_map = NodePath("rotatebase/NavigationRegion3D/GridMap")
 
 [node name="camerapos" type="Node3D" parent="." unique_id=1811370367]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.49963, 18.111944, 25.09213)
