@@ -2,11 +2,16 @@
 
 [ext_resource type="Script" uid="uid://dwa3t346ko37b" path="res://enemy/enemybase.gd" id="1_348p5"]
 [ext_resource type="PackedScene" uid="uid://da1ekv722pxl5" path="res://enemy/enemy_blade.tscn" id="2_nwalt"]
+[ext_resource type="AudioStream" uid="uid://hv3d2b37i1b4" path="res://Metal Clank Sound Effect.mp3" id="3_6b5m7"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ktusy"]
+height = 0.8145752
+radius = 3.0097656
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nwalt"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_6b5m7"]
-radius = 2.659135
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6b5m7"]
+radius = 3.133789
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_348p5"]
 radius = 11.001073
@@ -14,16 +19,20 @@ radius = 11.001073
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jl783"]
 radius = 3.3510742
 
-[node name="enemybase" type="CharacterBody3D" unique_id=1889331389]
+[node name="enemybase" type="CharacterBody3D" unique_id=1889331389 groups=["enemy"]]
 script = ExtResource("1_348p5")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1546598508]
-target_desired_distance = 5.0
+target_desired_distance = 3.0
 avoidance_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=943223702]
 
 [node name="uploads_files_231160_beyblade3" parent="MeshInstance3D" unique_id=1381967149 instance=ExtResource("2_nwalt")]
+
+[node name="wallcoll" type="CollisionShape3D" parent="." unique_id=149957702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7050546, 0)
+shape = SubResource("CylinderShape3D_ktusy")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1822970037]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5512569, 0)
@@ -31,11 +40,13 @@ shape = SubResource("CylinderShape3D_nwalt")
 
 [node name="hurtbox" type="Area3D" parent="." unique_id=1608273590 groups=["enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6548777, 0)
+monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hurtbox" unique_id=385696034]
-shape = SubResource("SphereShape3D_6b5m7")
+shape = SubResource("CylinderShape3D_6b5m7")
 
 [node name="detec" type="Area3D" parent="." unique_id=865773974]
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="detec" unique_id=1183393324]
 shape = SubResource("SphereShape3D_348p5")
@@ -58,6 +69,9 @@ one_shot = true
 [node name="movetimer" type="Timer" parent="." unique_id=1297417628]
 wait_time = 2.5
 one_shot = true
+
+[node name="soundy" type="AudioStreamPlayer3D" parent="." unique_id=1188400509]
+stream = ExtResource("3_6b5m7")
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="area_entered" from="detec" to="." method="_on_detec_area_entered"]

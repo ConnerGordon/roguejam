@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://hv3d2b37i1b4"
+path="res://.godot/imported/Metal Clank Sound Effect.mp3-95586a637076ea63fa090901f0a2261e.mp3str"
+
+[deps]
+
+source_file="res://Metal Clank Sound Effect.mp3"
+dest_files=["res://.godot/imported/Metal Clank Sound Effect.mp3-95586a637076ea63fa090901f0a2261e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

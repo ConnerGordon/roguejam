@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
+const SPEED = 10.0
 
 @onready var detec: Area3D = $detec
 
@@ -13,7 +13,8 @@ var idle_timer: float = 0 # internal countdown timer
 var found := false
 @onready var movetimer: Timer = $movetimer
 
-signal pdamage(dam: int)
+@onready var soundy: AudioStreamPlayer3D = $soundy
+
 
 
 @onready var lungin: Timer = $lungin
@@ -25,7 +26,7 @@ signal pdamage(dam: int)
 
 var playpos
 var lung = false
-signal scoreinc(die:int)
+
 
 
 @export var damage : int = 10
@@ -36,17 +37,17 @@ var var_health : float :
 	set(new_health):
 		var_health = new_health
 		if var_health <= 0:
-			scoreinc.emit(health*1.2)
+			roomtracker.score += health*1.5
+			queue_free()
 
 
 func _ready() -> void:
-	var_health = health
-
-
-
-
+	var_health = health*20
+	print(var_health)
+	
 
 func damag(taken:int)->void:
+	soundy.play()
 	var_health -= taken
 
 
@@ -55,21 +56,13 @@ func damag(taken:int)->void:
 
 
 
-
-
-
-
-
-
-
-
-
 func _physics_process(delta: float) -> void:
-	playpos = get_tree().get_first_node_in_group("Player").global_position
+	if get_tree().get_first_node_in_group("Player") != null:
+		playpos = get_tree().get_first_node_in_group("Player").global_position
 	
 	rotation_degrees += Vector3(0,20,0)
 	
-	
+	velocity.y = 0
 	match state:
 		State.IDLE:
 			
@@ -82,15 +75,17 @@ func _physics_process(delta: float) -> void:
 			on_move()
 		State.PLAYERTARG:
 			on_targ()
+			
 		State.PLAYERREACH:
 			p_reach()
+			
 			
 	move_and_slide()
 	
 
 
 func on_idle():
-	velocity = Vector3.ZERO
+	velocity.clampf(-4,4)
 	idle_timer = idle_wait
 	state= State.WAITMOVE
 	
@@ -133,7 +128,6 @@ func on_targ():
 	var nav_map = navigation_agent_3d.get_navigation_map()
 	var safe = NavigationServer3D.map_get_closest_point(nav_map,target)
 	navigation_agent_3d.target_position = safe
-		
 	var current_pos = global_transform.origin
 	var next_position = navigation_agent_3d.get_next_path_position()
 	var direc = (next_position - current_pos).normalized()
@@ -147,9 +141,9 @@ func p_reach():
 		
 		
 		velocity = Vector3.ZERO
-		lungin.start()
-		lungecd.start()
-		movetimer.start()
+		lungin.start(.75)
+		lungecd.start(1.5)
+		movetimer.start(2.5)
 	
 	
 	
@@ -168,9 +162,48 @@ func _on_detec_area_entered(area: Area3D) -> void:
 		found = true
 		state = State.WAITMOVE
 		idle_timer = 0
-
+		navigation_agent_3d.target_desired_distance = 15
 
 	
+
+
+
+
+
+
+
+
+
+
+func reverse(speed:Vector3):
+	
+	idle_timer = 1.5
+	state= State.WAITMOVE
+	if speed.abs().distance_to(Vector3.ZERO) == 0:
+		var current_pos = global_transform.origin
+		var next_position = playpos
+		var direc = (next_position - current_pos).normalized()
+		speed = -direc
+	while speed.abs().distance_to(Vector3.ZERO)< 5:
+		speed*=1.1
+	velocity = speed
+	lungin.stop()
+	lungecd.stop()
+	movetimer.stop()
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 func _on_lungin_timeout() -> void:
@@ -187,7 +220,7 @@ func _on_lungin_timeout() -> void:
 
 func _on_lungecd_timeout() -> void:
 	
-	velocity = Vector3.ZERO
+	velocity = velocity.clampf(-6,6)
 	lunge.monitoring= false
 	
 
@@ -198,7 +231,12 @@ func _on_movetimer_timeout() -> void:
 	
 	
 func _on_lunge_area_entered(area: Area3D) -> void:
-	if area.is_in_group("Player"):
-		pdamage.emit()
+	if area.get_parent().is_in_group("Player"):
+		soundy.play()
+		area.get_parent().take_damage(damage)
+		velocity*=-0.5
 		
+		lungecd.stop()
+		lungin.stop()
+		movetimer.start(0.5)
 		

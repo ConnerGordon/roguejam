@@ -9,8 +9,8 @@ point_count = 2
 
 [sub_resource type="Curve" id="Curve_r186m"]
 _limits = [0.0, 50.0, 0.0, 1.0]
-_data = [Vector2(0, 50), 0.0, -50.0, 0, 1, Vector2(1, 0), -50.0, 0.0, 1, 0]
-point_count = 2
+_data = [Vector2(0, 50), 0.0, -48.778843, 0, 1, Vector2(0.99999, 1.2216415), -79.42147, -79.42147, 0, 0, Vector2(1, 0), -134.39632, 0.0, 0, 0]
+point_count = 3
 
 [node name="Node" type="Node" unique_id=1843680054]
 script = ExtResource("1_nhcg0")

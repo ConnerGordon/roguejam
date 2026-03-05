@@ -2,7 +2,7 @@ extends Node
 
 static var room := 0
 
-
+static var score := 0
 
 
 @export var health_curve : Curve

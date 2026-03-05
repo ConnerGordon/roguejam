@@ -6,16 +6,6 @@ var next
 
 
 
-
-## change of plans. we making beyblade
-
-
-
-
-
-
-
-
 @onready var player: CharacterBody3D = $player
 @onready var rotatebase: Node3D = $rotatebase
 @onready var props: Node3D = $rotatebase/props
@@ -24,8 +14,8 @@ var next
 @export var grid_map: GridMap
 
 
-@export var door : PackedScene = preload("res://gameobjects/door.tscn")
 
+@export var door : PackedScene = preload("res://gameobjects/door.tscn")
 
 
 var leavable := false
@@ -39,7 +29,6 @@ var read := true
 func _ready() -> void:
 	
 	
-	
 	var gen = door.instantiate()
 	gen.rotation = rotatebase.rotation + props.rotation
 	gen.position = props.global_position
@@ -47,14 +36,12 @@ func _ready() -> void:
 	gen.leave.connect(change)
 	
 	
-	var choose = randf_range(0,3)
+	var choose = randf_range(0,2)
 	
 	if int(choose) == 0:
 		next = "res://rooms/nextworldright.tscn"
 	if int(choose) == 1:
 		next = "res://rooms/nextworldstraight.tscn"
-	if int(choose) == 2:
-		next = "res://rooms/nextworldright.tscn"
 		
 	player.camerabase = camerapos.global_position
 
@@ -68,7 +55,6 @@ func change(g:bool)->void:
 
 func _physics_process(delta: float) -> void:
 	if grid_map != null && read:
-		
 		grid_map.enhealth = node.get_health()
 		grid_map.Encount = node.get_count()
 		grid_map.callspawn()
@@ -84,8 +70,8 @@ func _process(delta: float) -> void:
 			player.camerabase = camerapos_2.position
 		elif camerapos.global_position.distance_to(player.global_position) < 50:
 			player.camerabase = camerapos.position
-	
-	if Input.is_action_just_pressed("interact"):
+	print(get_tree().get_first_node_in_group("enemy"))
+	if Input.is_action_just_pressed("interact")&& get_tree().get_first_node_in_group("enemy") == null&&leavable:
 		read=true
 		node.inc()
 		

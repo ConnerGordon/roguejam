@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://djfm7vc23i4du" path="res://gameobjects/door.gd" id="1_41hrp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ev48p"]
-size = Vector3(2.7400055, 1.9897766, 1.2758789)
+size = Vector3(13.847505, 1.9897766, 4.127075)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5sod"]
 albedo_color = Color(0.27058825, 0.05490196, 0, 1)
@@ -15,7 +15,7 @@ albedo_color = Color(0.26943505, 0.053566962, 0, 1)
 script = ExtResource("1_41hrp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1859947311]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008323669, 0.9688873, -0.93013525)
+transform = Transform3D(0.99992096, -0.0050840084, -0.011494272, 0.005104, 0.9999855, 0.0017100334, 0.011485408, -0.001768585, 0.99993247, 0.022178084, 0.9548151, -2.3850353)
 shape = SubResource("BoxShape3D_ev48p")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1888766258]

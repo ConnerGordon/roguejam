@@ -36,14 +36,15 @@ transparency = 1
 albedo_color = Color(1, 1, 1, 0)
 
 [node name="base_world" type="Node3D" unique_id=1758586049 node_paths=PackedStringArray("grid_map")]
+top_level = true
 script = ExtResource("1_xpu7g")
 grid_map = NodePath("rotatebase/NavigationRegion3D/GridMap")
 
 [node name="camerapos" type="Node3D" parent="." unique_id=451608260]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.459084, 7.0304985, 27.897835)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.459084, 13.485741, 27.897835)
 
 [node name="camerapos2" type="Node3D" parent="." unique_id=117308110]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.100569, 10.379036, -22.234444)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25349894, 13.486, -4.303606)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=655791832]
 environment = SubResource("Environment_4qpal")
@@ -59,6 +60,7 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -57.100807,
 transform = Transform3D(0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, 0.7071067, 0, 0, 0)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="rotatebase" unique_id=2078680416]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7254286, 0)
 navigation_mesh = SubResource("NavigationMesh_5n48o")
 
 [node name="GridMap" type="GridMap" parent="rotatebase/NavigationRegion3D" unique_id=1184075899]
@@ -72,11 +74,6 @@ data = {
 script = ExtResource("4_5n48o")
 Encount = 1
 enemy = ExtResource("5_y5ql7")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="rotatebase" unique_id=11778641]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.4818325, 0)
-use_collision = true
-size = Vector3(500, 1, 500)
 
 [node name="mapping" type="Node3D" parent="rotatebase" unique_id=1841812081]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.413475, 0)

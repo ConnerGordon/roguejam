@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://422lysdeu6xg"]
+
+[ext_resource type="Script" uid="uid://kyr405vkyedi" path="res://game_over.gd" id="1_y26ei"]
+[ext_resource type="AudioStream" uid="uid://dtbhh0j8hj84y" path="res://Bad explosion - Deltarune sound effect.mp3" id="2_yxx3c"]
+
+[sub_resource type="Gradient" id="Gradient_xapjj"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y26ei"]
+gradient = SubResource("Gradient_xapjj")
+fill_from = Vector2(0.52136755, 0.582906)
+fill_to = Vector2(0.51111114, 0.982906)
+
+[node name="game over" type="CanvasLayer" unique_id=615992388]
+script = ExtResource("1_y26ei")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1555501742]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_y26ei")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2146988884]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -139.0
+offset_top = -91.0
+offset_right = 139.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1330607408]
+layout_mode = 2
+theme_override_constants/separation = 365
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=66577746]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.84276277, 0, 0.19582775, 1)
+theme_override_font_sizes/font_size = 60
+text = "quit"
+flat = true
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1155394024]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0.5888594, 0.4523003, 1)
+theme_override_font_sizes/font_size = 60
+text = "retry"
+flat = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1624772316]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=169499436]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -193.0
+offset_right = 20.0
+offset_bottom = -153.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer2" unique_id=568299592]
+layout_mode = 2
+theme_override_font_sizes/font_size = 125
+text = "Game Over"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="." unique_id=521337876]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -339.5
+offset_top = -85.5
+offset_right = 339.5
+offset_bottom = 85.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="VBoxContainer3" unique_id=1510248202]
+layout_mode = 2
+theme_override_font_sizes/font_size = 90
+text = "final score"
+horizontal_alignment = 1
+
+[node name="finalscore" type="VBoxContainer" parent="." unique_id=127159749]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -339.5
+offset_top = 101.0
+offset_right = 339.5
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="finalscore" unique_id=1129351281]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 90
+horizontal_alignment = 1
+
+[node name="boom" type="AudioStreamPlayer" parent="." unique_id=1624433672]
+stream = ExtResource("2_yxx3c")
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

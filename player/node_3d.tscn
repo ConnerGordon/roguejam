@@ -10,8 +10,12 @@ _limits = [0.0, 35.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 167.76756, 0, 0, Vector2(0.03649634, 10.964684), 57.719353, 57.719353, 0, 0, Vector2(1, 35), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fs8bw"]
+height = 0.8145752
+radius = 3.0097656
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_fs8bw"]
-radius = 0.4007385
+radius = 0.3516702
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xce6j"]
 radius = 3.0957031
@@ -27,17 +31,23 @@ spincurve = SubResource("Curve_fs8bw")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2108912301]
 transform = Transform3D(1, 0, 0, 0, 0.65512335, 0.7555219, 0, -0.75552195, 0.65512335, 0, 10.496228, 10)
 
+[node name="wallcoll" type="CollisionShape3D" parent="." unique_id=1077147045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7050546, 0)
+shape = SubResource("CylinderShape3D_fs8bw")
+
 [node name="hurtbox" type="CollisionShape3D" parent="." unique_id=1316341515 groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30831468, 0)
 shape = SubResource("SphereShape3D_fs8bw")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1846529879]
+monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=437410143]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.377155, 0)
 shape = SubResource("CylinderShape3D_xce6j")
 
 [node name="hitbox" type="Area3D" parent="." unique_id=307486585]
+monitoring = false
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox" unique_id=135892997]

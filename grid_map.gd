@@ -20,8 +20,8 @@ func callspawn() -> void:
 			
 			var en = enemy.instantiate()
 			en.health = enhealth
-			en.damage = enhealth*10
-			get_tree().get_root().get_child(0).add_child(en)
+			en.damage = enhealth*75
+			get_tree().get_root().get_child(1).add_child(en)
 			
 			
 			#while inv == false:
